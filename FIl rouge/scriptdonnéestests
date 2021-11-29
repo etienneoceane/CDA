@@ -1,0 +1,7 @@
+
+
+INSERT INTO `Commercial`(`commercial_id`, `commercial_nom`, `commercial_prenom`, `commercial_tel`) 
+VALUES (1, "BERNARD", "Thomas", 0145249855);
+
+INSERT INTO `Client`(`cli_id`, `cli_nom`, `cli_prenom`, `cli_raison`, `cli_adresse`, `cli_ville`, `cli_cp`, `cli_tel`, `cli_mail`, `commercial_id`) 
+VALUES (1,"","","GUITARLAND","145 Rue des poins levés","Amiens","80000","0322457815","bernard.thomas@testdonnes.com",1);
