@@ -1,40 +1,75 @@
 
 
 INSERT INTO `Commercial`(`commercial_id`, `commercial_nom`, `commercial_prenom`, `commercial_tel`) 
-VALUES (1, "BERNARD", "Thomas", 0345725145),
-VALUES (3, "MAGNOLIA", "Orphée", 0645781236),
-VALUES (3, "WATIN", "Sylvain", 0322568974);
+VALUES  (1, "BERNARD", "Thomas", 0345725145),
+        (3, "MAGNOLIA", "Orphée", 0645781236),
+        (3, "WATIN", "Sylvain", 0322568974);
 
 INSERT INTO `Client`(`cli_id`, `cli_nom`, `cli_prenom`, `cli_raison`, `cli_adresse`, `cli_ville`, `cli_cp`, `cli_tel`, `cli_mail`, `commercial_id`) 
-VALUES (1,"","","GUITARLAND","145 Rue des poins levés","Amiens","80000","0322457815","bernard.thomas@testdonnes.com",1),
-VALUES (2,"","","WOODSTOCK","105 bd vaucluse","Beauvais","60000","0345781236","musiquewoodstock@gmail.com",1),
-VALUES (3,"","","LOCAVIOLON","10 allée de l'ecce tarre","Reims","51100","0163985247","mlocaviolon.ent@gmail.com",2),
-VALUES (4,"","","PIANO&CIE","18 Quai des Orfèvres","Paris","75001","0582937145","piano_cie_orf@outlook.com",3);
+VALUES  (1,"","","GUITARLAND","145 Rue des poins levés","Amiens","80000","0322457815","bernard.thomas@testdonnes.com",1),
+        (2,"","","WOODSTOCK","105 bd vaucluse","Beauvais","60000","0345781236","musiquewoodstock@gmail.com",1),
+        (3,"","","LOCAVIOLON","10 allée de l'ecce tarre","Reims","51100","0163985247","mlocaviolon.ent@gmail.com",2),
+        (4,"","","PIANO&CIE","18 Quai des Orfèvres","Paris","75001","0582937145","piano_cie_orf@outlook.com",3);
 
 INSERT INTO `Fournisseur`(`four_id`, `four_nom`, `four_prenom`, `four_raison`, `four_adresse`, `four_ville`, `four_cp`, `four_tel`, `four_contact_nom`, `four_contact_prenom`)
 VALUES  (1,"Armozo","Galotino","ARMOZO","06 rue laymes","Paris","75003","0173751178","Vermesh","Salome"),
         (2,"Bolies","Paul","Aarpège","63 bd marguerite levant","Paris","75009","0785848682","DUPONT","François");
 
 INSERT INTO `Rubrique`(`rubrique_id`, `rubrique_nom`, `rubrique_desc`) 
-VALUES  (1,"Cordes","Instruments à cordes"),
-        (2,"Vent","Instruments à vent"),
-        (3,"Percussions","Instruments à percussions");
+VALUES  (1,"Batterie","	Viens jouer de la baguette!"),
+        (2,"Cases","Des caissons à n'en plus finir"),
+        (3,"Cordes","Viens gratter de la corde"),
+        (4,'Studio','Parfait pour la futur nouvelle star'),
+        (5,'Claviers','Joue ton meilleur "Harry potter thème"'),
+        (6,'Instruments à vent','Souffle aussi fort que le loup'),
+        (7,'Sono',"David ? c'est toi ?");
 
-INSERT INTO `Sous_rubrique`(`sousrub_id`, `sousrub_nom`, `sousrub_desc`, `rubrique_id`) 
-VALUES  (1,"Guitares","Guitares en tout genre",1),
-        (2,"Trombonnes","Trombonnes en tout genre",2),
-        (3,"Xylophones","Xylophones en tout genre",3),
-        (4,"Violons","Violons en tout genre",1),
-        (5,"Pianos","Pianos en tout genre",1),
-        (6,"Flûte","Flûte en tout genre",2),
-        (7,"Tambours","Tambours en tout genre",3);
+
+INSERT INTO `Sous_rubrique` (`sousrub_id`, `sousrub_nom`, `sousrub_desc`, `rubrique_id`) 
+VALUES  (1, 'Guitares Electriques', '', 3),
+        (2, 'Guitares Acoustiques', '', 3),
+        (3, 'Guitares Electro-Acoustiques', '', 3),
+        (4, 'Basses Electriques', '', 3),
+        (5, 'Basses Acoustiques', '', 3),
+        (6, 'Ukulélés', '', 3),
+        (7, 'Batteries Acoustiques', '', 1),
+        (8, 'Bateries Electroniques', '', 1),
+        (9, 'Housses', '', 2),
+        (10, 'Rigides', '', 2),
+        (11, 'Etuis Rigides', '', 2),
+        (12, 'Micro     ', 'Prise de son', 4),
+        (13, 'Mixage', 'Table de mixage', 4),
+        (14, 'Pianos à queues', '', 5),
+        (15, 'Pianos synthétiseurs', '', 5),
+        (16, 'Saxophones', '', 6),
+        (17, 'Trombones', '', 6),
+        (18, 'Caissons de basses', '', 7),
+        (19, 'Ampli à guitare', '', 7);
 
 INSERT INTO `Produit`(`pro_id`, `pro_desc`, `pro_nom`, `pro_photo`, `pro_stock`, `pro_prixht`, `sousrub_id`) 
-VALUES  (1,"Yamaha c-40 Guitare Classique","Guitare C-40","C-40.jpeg",25,139.00,1), 
-        (2,"Startone SSL-45 Bb-Tenor Trombone","Trombone SSL-45","SSL-45.jpg",17,138.00,2),
-        (3, "Thomann THTX 3.0 Xylophone","Xylophone THTX 3.0","THTX.jpg",5,298.00,3),
-        (4,"Yamaha 4/4 Violon V20G","Violon V20G","V20G.jpeg",3,1598.00,4),
-        (5,"Yamaha P-45 Piano numérique","Piano P-45","P-45.jpg",10,429.00,5),
-        (6,"Flûte Thomann FL-1000 Re","Flûte FL-100","FL-100.jpg",20,250.00,6),
-        (7,"Tambour Meinl FD18BO 18p Bodhran","Tambour FD18BO","FD18BO.jpeg",10,169.00,7);
+VALUES  (1, 'Yamaha c-40 Guitare Classique', 'Guitare C-40', 'C-40.jpeg', 25, '139.00', 3),
+        (2, 'Startone SSL-45 Bb-Tenor Trombone', 'Trombone SSL-45', 'SSL-45.jpg', 17, '138.00', 17),
+        (3, 'Yamaha P-45 Piano numérique', 'Piano P-45', 'P-45.jpg', 10, '429.00', 15),
+        (8, 'Behringer Xenyx X1204 USB Table de mixage', 'Table mixage analogique X1204', 'X1204.jpg', 5, '179.00', 13),
+        (9, 'Batterie Acoustique Millenium Focus 22 Drum Set Black', 'Millenium Focus 22 Drum Set Black', 'Batterie22.jpeg', 2, '258.00', 7),
+        (10, 'Thomann E-Guitar Case ABS', 'Etui rigide Thomann E-Guitar Case ABS', 'Etuiguitarelec.jpg', 25, '66.00', 10),
+        (11, 'Thomann Stage Piano Bag', 'Housse Thomann Stage Piano Bag', 'houssepiano.jpg', 25, '45.00', 9),
+        (12, 'HK Audio Sonar 115 Sub D', 'Sono caisson HK Audio Sonar 115 Sub D', 'Sonocaissonbasse.jpg', 13, '656.00', 18);
 
+
+INSERT INTO `Commande` (`commande_id`, `commande_date`, `commande_reduc`, `commande_prix_tot`, `commande_date_reglem`, `commande_date_fact`, 
+                        `commande_livraison_adresse`, `commande_livraison_ville`, `commande_livraison_cp`, `commande_facturation_adresse`, `commande_facturation_ville`, 
+                        `commande_facturation_cp`, `commande_etat`, `cli_id`)
+VALUES  (1050, '2021-11-30', NULL, NULL, '2021-11-30', '2021-11-30', '13 rue de la rennega', 'Amiens', '80000', '13 rue de la rennega', 'Amiens', '80000',
+         'En cours de préparation', 1);
+
+
+INSERT INTO `Contenir` (`contenir_pro_id`, `contenir_commande_id`, `contenir_qtite_commande`, `contenir_prix_vente`)
+ VALUES (9, 1050, 1, NULL);
+
+
+INSERT INTO `Livrer` (`livrer_pro_id`, `livrer_liv_id`, `livrer_pro_liv_qtite`) 
+VALUES (9, 10502021, 1);
+
+INSERT INTO `Livraison` (`liv_id`, `liv_num_bon`, `liv_date`, `liv_etat`, `liv_commande_id`) 
+VALUES (10502021, '1050-2021', '2021-12-03', '', 1050)
