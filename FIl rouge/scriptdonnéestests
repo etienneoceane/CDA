@@ -1,7 +1,40 @@
 
 
 INSERT INTO `Commercial`(`commercial_id`, `commercial_nom`, `commercial_prenom`, `commercial_tel`) 
-VALUES (1, "BERNARD", "Thomas", 0145249855);
+VALUES (1, "BERNARD", "Thomas", 0345725145),
+VALUES (3, "MAGNOLIA", "Orphée", 0645781236),
+VALUES (3, "WATIN", "Sylvain", 0322568974);
 
 INSERT INTO `Client`(`cli_id`, `cli_nom`, `cli_prenom`, `cli_raison`, `cli_adresse`, `cli_ville`, `cli_cp`, `cli_tel`, `cli_mail`, `commercial_id`) 
-VALUES (1,"","","GUITARLAND","145 Rue des poins levés","Amiens","80000","0322457815","bernard.thomas@testdonnes.com",1);
+VALUES (1,"","","GUITARLAND","145 Rue des poins levés","Amiens","80000","0322457815","bernard.thomas@testdonnes.com",1),
+VALUES (2,"","","WOODSTOCK","105 bd vaucluse","Beauvais","60000","0345781236","musiquewoodstock@gmail.com",1),
+VALUES (3,"","","LOCAVIOLON","10 allée de l'ecce tarre","Reims","51100","0163985247","mlocaviolon.ent@gmail.com",2),
+VALUES (4,"","","PIANO&CIE","18 Quai des Orfèvres","Paris","75001","0582937145","piano_cie_orf@outlook.com",3);
+
+INSERT INTO `Fournisseur`(`four_id`, `four_nom`, `four_prenom`, `four_raison`, `four_adresse`, `four_ville`, `four_cp`, `four_tel`, `four_contact_nom`, `four_contact_prenom`)
+VALUES  (1,"Armozo","Galotino","ARMOZO","06 rue laymes","Paris","75003","0173751178","Vermesh","Salome"),
+        (2,"Bolies","Paul","Aarpège","63 bd marguerite levant","Paris","75009","0785848682","DUPONT","François");
+
+INSERT INTO `Rubrique`(`rubrique_id`, `rubrique_nom`, `rubrique_desc`) 
+VALUES  (1,"Cordes","Instruments à cordes"),
+        (2,"Vent","Instruments à vent"),
+        (3,"Percussions","Instruments à percussions");
+
+INSERT INTO `Sous_rubrique`(`sousrub_id`, `sousrub_nom`, `sousrub_desc`, `rubrique_id`) 
+VALUES  (1,"Guitares","Guitares en tout genre",1),
+        (2,"Trombonnes","Trombonnes en tout genre",2),
+        (3,"Xylophones","Xylophones en tout genre",3),
+        (4,"Violons","Violons en tout genre",1),
+        (5,"Pianos","Pianos en tout genre",1),
+        (6,"Flûte","Flûte en tout genre",2),
+        (7,"Tambours","Tambours en tout genre",3);
+
+INSERT INTO `Produit`(`pro_id`, `pro_desc`, `pro_nom`, `pro_photo`, `pro_stock`, `pro_prixht`, `sousrub_id`) 
+VALUES  (1,"Yamaha c-40 Guitare Classique","Guitare C-40","C-40.jpeg",25,139.00,1), 
+        (2,"Startone SSL-45 Bb-Tenor Trombone","Trombone SSL-45","SSL-45.jpg",17,138.00,2),
+        (3, "Thomann THTX 3.0 Xylophone","Xylophone THTX 3.0","THTX.jpg",5,298.00,3),
+        (4,"Yamaha 4/4 Violon V20G","Violon V20G","V20G.jpeg",3,1598.00,4),
+        (5,"Yamaha P-45 Piano numérique","Piano P-45","P-45.jpg",10,429.00,5),
+        (6,"Flûte Thomann FL-1000 Re","Flûte FL-100","FL-100.jpg",20,250.00,6),
+        (7,"Tambour Meinl FD18BO 18p Bodhran","Tambour FD18BO","FD18BO.jpeg",10,169.00,7);
+

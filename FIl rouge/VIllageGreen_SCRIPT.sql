@@ -100,6 +100,7 @@ CREATE TABLE Contenir(
    contenir_pro_id INT ,
    contenir_commande_id INT,
    contenir_qtite_commande INT NOT NULL,
+   contenir_prix_vente INT,
    PRIMARY KEY(contenir_pro_id, contenir_commande_id),
    FOREIGN KEY(contenir_pro_id) REFERENCES Produit(pro_id),
    FOREIGN KEY(contenir_commande_id) REFERENCES Commande(commande_id)
