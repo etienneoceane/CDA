@@ -55,65 +55,123 @@ GROUP BY numcom ORDER BY Total DESC;
 dans le calcul du total les articles commandés en quantité supérieure
 ou égale à 1000.
 (Affichage numéro de commande et total)
-
+SELECT numcom AS Numéro_commande, SUM(qtecde*priuni) AS Total FROM ligcom WHERE qtecde<1000 GROUP BY numcom HAVING SUM(qtecde*priuni)>10000;
 
 
 --10. Lister les commandes par nom fournisseur
 (Afficher le nom du fournisseur, le numéro de commande et la date)
-
-
+SELECT nomfou AS Fournisseur, numcom AS Commande, datcom AS Date_commande 
+FROM fournis, entcom
+WHERE fournis.numfou=entcom.numfou
+GROUP BY nomfou;
 
 --11. Sortir les produits des commandes ayant le mot "urgent' en
 observation?
-
+SELECT entcom.numcom AS Commande, fournis.nomfou AS Fournisseur, produit.libart AS Produit, entcom.obscom AS Observation, SUM(qtecde*priuni) AS Total 
+FROM fournis 
+JOIN entcom 
+ON fournis.numfou=entcom.numfou 
+JOIN ligcom 
+ON entcom.numcom=ligcom.numcom 
+JOIN produit 
+ON produit.codart=ligcom.codart 
+WHERE entcom.obscom LIKE '%urgent%' 
+GROUP BY entcom.numcom, fournis.nomfou, produit.libart;
 
 
 --12. Coder de 2 manières différentes la requête suivante :
 Lister le nom des fournisseurs susceptibles de livrer au moins un article
+SELECT fournis.nomfou AS Fournisseur
+FROM fournis 
+JOIN vente
+ON fournis.numfou=vente.numfou
+JOIN produit
+ON produit.codart=vente.codart
+WHERE (stkphy-stkale)>0
+GROUP BY fournis.nomfou;
 
 
 
 --13. Coder de 2 manières différentes la requête suivante
 Lister les commandes (Numéro et date) dont le fournisseur est celui de
 la commande 70210 :
-
+SELECT numcom AS Numéro_commande, datcom AS date_commande
+FROM entcom
+WHERE numfou=(SELECT numfou FROM entcom WHERE numcom=70210);
 
 
 --14. Dans les articles susceptibles d’être vendus, lister les articles moins
 chers (basés sur Prix1) que le moins cher des rubans (article dont le
 premier caractère commence par R). On affichera le libellé de l’article
 et prix1
-
+On affichera le libellé de l’article et prix1
+SELECT produit.libart AS Produit, vente.prix1 AS Prix1 
+FROM produit 
+JOIN vente 
+ON produit.codart=vente.codart 
+WHERE vente.prix1 < (SELECT MIN(vente.prix1) AS Ruban_moinCher FROM vente WHERE vente.codart LIKE 'R%');
 
 
 --15. Editer la liste des fournisseurs susceptibles de livrer les produits
 dont le stock est inférieur ou égal à 150 % du stock dalerte. La liste est
 triée par produit puis fournisseur
-
+SELECT fournis.nomfou AS Fournisseur, produit.stkphy AS Stock_physique, produit.stkale AS Stock_alerte 
+FROM fournis 
+JOIN vente 
+ON fournis.numfou=vente.numfou 
+JOIN produit 
+ON produit.codart=vente.codart 
+WHERE (stkphy-stkale)>0 
+GROUP BY produit.libart, fournis.nomfou 
+HAVING stkphy<=(stkale)*1.5;
 
 
 --16. Éditer la liste des fournisseurs susceptibles de livrer les produit dont
 le stock est inférieur ou égal à 150 % du stock dalerte et un délai de
 livraison dau plus 30 jours. La liste est triée par fournisseur puis
 produit
-
+SELECT fournis.nomfou AS Fournisseur, produit.stkphy AS Stock_physique, produit.stkale AS Stock_alerte 
+FROM fournis 
+JOIN vente 
+ON fournis.numfou=vente.numfou 
+JOIN produit 
+ON produit.codart=vente.codart 
+WHERE (produit.stkphy-produit.stkale)>0 AND vente.delliv>30 
+GROUP BY fournis.nomfou, produit.libart 
+HAVING produit.stkphy<=(produit.stkale*1.5);
 
 
 --17. Avec le même type de sélection que ci-dessus, sortir un total des
 stocks par fournisseur trié par total décroissant
+SELECT fournis.nomfou AS Fournisseur, produit.stkphy AS Stock_physique, produit.stkale AS Stock_alerte, SUM(produit.stkphy) AS Total_stock 
+FROM fournis 
+JOIN vente 
+ON fournis.numfou=vente.numfou 
+JOIN produit 
+ON produit.codart=vente.codart 
+WHERE (produit.stkphy-produit.stkale)>0 AND vente.delliv>30 
+GROUP BY fournis.nomfou, produit.libart 
+HAVING produit.stkphy<=(produit.stkale*1.5)
+ORDER BY SUM(produit.stkphy) DESC;
 
 
 
 --18. En fin d'année, sortir la liste des produits dont la quantité réellement
 commandée dépasse 90% de la quantité annuelle prévue.
-
+SELECT produit.libart AS Produit, produit.qteann*0.9 AS `Quantite annuelle 90%`, ligcom.qtecde AS `Quantite commande`
+FROM produit
+JOIN ligcom
+ON produit.codart=ligcom.codart
+WHERE produit.qteann*0.9 < ligcom.qtecde
 
 
 --19. Calculer le chiffre d'affaire par fournisseur pour l'année 93 sachant
 que les prix indiqués sont hors taxes et que le taux de TVA est 20%.
-
-
-
---20. Existe-t-il des lignes de commande non cohérentes avec les produits
-vendus par les fournisseurs. ?
-Introduction langage S
+SELECT SUM(qtecde*priuni*1.2) AS `Chiffre d'Affaire`, nomfou AS Fournisseur  
+FROM ligcom 
+JOIN entcom
+ON ligcom.numcom=entcom.numcom
+JOIN fournis
+ON fournis.numfou=entcom.numfou
+WHERE YEAR(derliv)=2007
+GROUP BY nomfou;
