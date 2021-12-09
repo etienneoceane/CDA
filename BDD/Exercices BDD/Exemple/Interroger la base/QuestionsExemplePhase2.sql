@@ -42,7 +42,7 @@ ORDER BY nodep, salaire ASC
 employés qui gagnent plus quun seul employé du département 31,
 classés par numéro de département et salaire.
 SELECT nom, salaire, nodep FROM employe 
-WHERE salaire > (SELECT AVG(salaire) FROM employe WHERE nodep=31) 
+WHERE salaire > ANY(SELECT salaire FROM employe WHERE nodep=31) 
 ORDER BY nodep, salaire ASC;
 
 
@@ -50,7 +50,7 @@ ORDER BY nodep, salaire ASC;
 employés qui gagnent plus que tous les employés du département 31,
 classés par numéro de département et salaire.
 SELECT nom, salaire, nodep FROM employe 
-WHERE salaire > (SELECT MAX(salaire) FROM employe WHERE nodep=31) 
+WHERE salaire > ALL (SELECT salaire FROM employe WHERE nodep=31) 
 ORDER BY nodep, salaire ASC;
 
 
