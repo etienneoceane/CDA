@@ -65,8 +65,7 @@ FROM fournis, entcom
 WHERE fournis.numfou=entcom.numfou
 GROUP BY nomfou;
 
---11. Sortir les produits des commandes ayant le mot "urgent' en
-observation?
+--11. Sortir les produits des commandes ayant le mot "urgent' en observation?
 SELECT entcom.numcom AS Commande, fournis.nomfou AS Fournisseur, produit.libart AS Produit, entcom.obscom AS Observation, SUM(qtecde*priuni) AS Total 
 FROM fournis 
 JOIN entcom 
@@ -158,7 +157,7 @@ ORDER BY SUM(produit.stkphy) DESC;
 
 --18. En fin d'année, sortir la liste des produits dont la quantité réellement
 commandée dépasse 90% de la quantité annuelle prévue.
-SELECT produit.libart AS Produit, produit.qteann*0.9 AS `Quantite annuelle 90%`, ligcom.qtecde AS `Quantite commande`
+SELECT produit.libart AS Produit, produit.qteann*0.9 AS "Quantite annuelle 90%", ligcom.qtecde AS "Quantite commande"
 FROM produit
 JOIN ligcom
 ON produit.codart=ligcom.codart
@@ -167,7 +166,7 @@ WHERE produit.qteann*0.9 < ligcom.qtecde
 
 --19. Calculer le chiffre d'affaire par fournisseur pour l'année 93 sachant
 que les prix indiqués sont hors taxes et que le taux de TVA est 20%.
-SELECT SUM(qtecde*priuni*1.2) AS `Chiffre d'Affaire`, nomfou AS Fournisseur  
+SELECT SUM(qtecde*priuni*1.2) AS "Chiffre d'Affaire", nomfou AS Fournisseur  
 FROM ligcom 
 JOIN entcom
 ON ligcom.numcom=entcom.numcom
