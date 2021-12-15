@@ -1,5 +1,5 @@
-DROP DATABASE VillageGreen;
-CREATE DATABASE VillageGreen ;
+DROP DATABASE VillageGreen2;
+CREATE DATABASE VillageGreen2 ;
 USE VillageGreen;
 
 CREATE TABLE Fournisseur(
