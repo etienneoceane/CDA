@@ -47,14 +47,14 @@ VALUES  (1, 'Guitares Electriques', '', 3),
         (19, 'Ampli à guitare', '', 7);
 
 INSERT INTO `Produit`(`pro_id`, `pro_desc`, `pro_nom`, `pro_photo`, `pro_stock`, `pro_prixht`, `sousrub_id`) 
-VALUES  (1, 'Yamaha c-40 Guitare Classique', 'Guitare C-40', 'C-40.jpeg', 25, '139.00', 3),
-        (2, 'Startone SSL-45 Bb-Tenor Trombone', 'Trombone SSL-45', 'SSL-45.jpg', 17, '138.00', 17),
-        (3, 'Yamaha P-45 Piano numérique', 'Piano P-45', 'P-45.jpg', 10, '429.00', 15),
-        (8, 'Behringer Xenyx X1204 USB Table de mixage', 'Table mixage analogique X1204', 'X1204.jpg', 5, '179.00', 13),
-        (9, 'Batterie Acoustique Millenium Focus 22 Drum Set Black', 'Millenium Focus 22 Drum Set Black', 'Batterie22.jpeg', 2, '258.00', 7),
-        (10, 'Thomann E-Guitar Case ABS', 'Etui rigide Thomann E-Guitar Case ABS', 'Etuiguitarelec.jpg', 25, '66.00', 10),
-        (11, 'Thomann Stage Piano Bag', 'Housse Thomann Stage Piano Bag', 'houssepiano.jpg', 25, '45.00', 9),
-        (12, 'HK Audio Sonar 115 Sub D', 'Sono caisson HK Audio Sonar 115 Sub D', 'Sonocaissonbasse.jpg', 13, '656.00', 18);
+VALUES  (1, 'Yamaha c-40 Guitare Classique', 'Guitare C-40', 'C-40.jpeg', 25, '139.00', 3,1),
+        (2, 'Startone SSL-45 Bb-Tenor Trombone', 'Trombone SSL-45', 'SSL-45.jpg', 17, '138.00', 17,2),
+        (3, 'Yamaha P-45 Piano numérique', 'Piano P-45', 'P-45.jpg', 10, '429.00', 15,2),
+        (8, 'Behringer Xenyx X1204 USB Table de mixage', 'Table mixage analogique X1204', 'X1204.jpg', 5, '179.00', 13,1),
+        (9, 'Batterie Acoustique Millenium Focus 22 Drum Set Black', 'Millenium Focus 22 Drum Set Black', 'Batterie22.jpeg', 2, '258.00', 7,1),
+        (10, 'Thomann E-Guitar Case ABS', 'Etui rigide Thomann E-Guitar Case ABS', 'Etuiguitarelec.jpg', 25, '66.00', 10,2),
+        (11, 'Thomann Stage Piano Bag', 'Housse Thomann Stage Piano Bag', 'houssepiano.jpg', 25, '45.00', 9,2),
+        (12, 'HK Audio Sonar 115 Sub D', 'Sono caisson HK Audio Sonar 115 Sub D', 'Sonocaissonbasse.jpg', 13, '656.00', 18,1);
 
 
 INSERT INTO `Commande` (`commande_id`, `commande_date`, `commande_reduc`, `commande_prix_tot`, `commande_date_reglem`, `commande_date_fact`, 

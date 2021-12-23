@@ -1,0 +1,9 @@
+
+
+delimiter |
+CREATE procedure commande_non_soldees(In status varchar(50))
+begin
+
+    SELECT * FROM `orders` WHERE `ord_date_payment` IS NULL and `ord_status` = status;
+END |
+delimiter ;

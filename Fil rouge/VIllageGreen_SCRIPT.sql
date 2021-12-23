@@ -1,5 +1,5 @@
-DROP DATABASE VillageGreen2;
-CREATE DATABASE VillageGreen2 ;
+DROP DATABASE IF EXISTS VillageGreen;
+CREATE DATABASE VillageGreen;
 USE VillageGreen;
 
 CREATE TABLE Fournisseur(
@@ -63,8 +63,10 @@ CREATE TABLE Produit(
    pro_stock INT,
    pro_prixht DECIMAL(7,2),
    sousrub_id INT NOT NULL,
+   four_id INT NOT NULL,
    PRIMARY KEY(pro_id),
-   CONSTRAINT `Produit_fk_1`FOREIGN KEY(sousrub_id) REFERENCES Sous_rubrique(sousrub_id)
+   CONSTRAINT `Produit_fk_1`FOREIGN KEY(sousrub_id) REFERENCES Sous_rubrique(sousrub_id),
+   CONSTRAINT `Produit_fk_2`FOREIGN KEY(four_id) REFERENCES Fournisseur(four_id)
 );
 
 CREATE TABLE Commande(
