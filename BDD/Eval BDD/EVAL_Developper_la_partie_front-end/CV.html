@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Mon CV</title>
+        <!-- Bootstrap -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+        <!-- CSS -->
+        <link href="style.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+
+                <!-- DIV COORDONNES -->
+                <div class="col-sm-6 col-md-5 col-lg-4 col-xxl-3 px-0" id="encadre">
+                    <aside class="mt-3 ms-5">
+                        <img src="Photo_Oceane.jpg" class="img-fluid" alt="photo">
+                        <h2 class="nom"> Océane ETIENNE</h2>
+                        
+                        <br>
+                        <br>
+                        <br>
+
+                        <h3> CONTACTS </h3>
+                        
+                        <h5> 07 86 28 29 55 </h5>
+                        <h5> etienne.oceane@outlook.com </h5>
+                        <h5> Permis B + véhiculée </h5>
+                        
+                        <br>
+
+                        <!-- Lien linked in  -->
+                        <h5>
+                            <i class="fab fa-linkedin fa-x"></i>&nbsp
+                            <a href="https://www.linkedin.com/in/océane-etienne/">océane-etienne</a>
+                        </h5>
+                        
+                        <!-- Lien github -->
+                        <h5>
+                            <i class="fab fa-github fa-x"></i>&nbsp
+                            <a href="https://github.com/etienneoceane?tab=repositories">etienneoceane</a>
+                        </h5>
+                        <br>
+                        <br>
+                        <br>
+
+                        <h3> Envoyer un message <i class="fas fa-arrow-circle-down"></i></h3>
+                        <div class="col-10">
+                        <!-- FORMULAIRE DE CONTACT -->
+                        <form action="message_contact.php" method="post" name="form_contact">
+                            <div class="form-group">
+                                <label for="email">Votre e-mail</label>
+                                <input type="email" class="form-control" id="email" placeholder="name@example.com">
+                                <span id="error1" class="mb-3 d-block"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="sujet">Sujet</label>
+                                <input type="text" class="form-control" id="sujet">
+                                <span id="error2" class="mb-3 d-block"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Votre message</label>
+                                <textarea class="form-control" id="message" rows="8"></textarea>
+                            </div><br>
+                            <button type="submit" value="Envoyer" name="send" class="btn btn-primary">Submit</button>
+                            </form>
+                        </div>
+                    </aside>    
+                </div>
+
+                <!-- DIV COMPETENCES PROFESSIONNEL FORMATION -->
+                <div class="col-sm-6 col-md-7 col-lg-8 col-xxl-9 px-0" id="encadre2">
+
+                    <!-- PROFESSIONNEL -->
+                    <div class="text-center" >
+                        <h1 id="titre">Concepteur Développeur d’Applications</h1>
+                        <h2>PROFESSIONNEL</h2>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-3">
+                            <p><b>Mars 2021</b> <br> <b>(3 mois)</b></p>
+                        </div>
+                        <div class="col-5">
+                            <p class="intitule">Développeuse Web stagiaire - Aurior Amiens (80)</p>
+                            <p>Développer la partie back-end d'une application,  gestion de bases de données, création de fonctions dynamiques etc.</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-3">
+                            <p><b>Mars 2020</b> <br> <b>(7 mois)</b></p>
+                        </div>
+                        <div class="col-5">
+                            <p class="intitule"> Employée de reprographie  - GSF Beuvry (62) </p>
+                            <p>Maquettage, mise en page, flyers, livrets.  Gestion et maintenance de la machine d'impression.</p>
+                        </div>
+                    </div>
+
+                    <div class="row ">
+                        <div class="col-3">
+                            <p><b>Fevrier 2019</b>  <br> <b>(10 mois)</b></p>
+                        </div>
+                        <div class="col-5">
+                            <p class="intitule">Secrétaire administrative - Eiffage Construction  Amiens(80)</p>
+                            <p>Accueil des clients, suivi administratif des dossiers, rédaction et signature des contrats avec les clients.</p>
+                        </div>
+                    </div>
+
+
+                    <!-- FORMATION -->
+                    <div class="text-center" >
+                    <h2>FORMATION</h2>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-3">
+                            <p><b>En cours</b></p>
+                        </div>
+                        <div class="col-5">
+                            <p class="intitule">Titre professionnel de concepteur développeur d'applications</p>
+                            <p>AFPA d'Amiens (BAC +3)</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-3">
+                            <p><b>2021</b></p>
+                        </div>
+                        <div class="col-5">
+                            <p class="intitule">Titre professionnel de développeur web et web mobile</p>
+                            <p>AFPA D'Amiens (BAC+2)</p>
+                        </div>
+                    </div>
+
+                    <div class="row ">
+                        <div class="col-3">
+                            <p><b>2015</b></p>
+                        </div>
+                        <div class="col-5">
+                            <p class="intitule"> DUT Génie biologique</p>
+                            <p>Université de Picardie Jules Verne (BAC+2)</p>
+                        </div>
+                    </div>
+
+
+                    <!-- COMPETENCES -->
+                    <div class="text-center" >
+                        <h2>COMPETENCES</h2>
+                    </div>
+                    
+                    <div class="row mb-4">
+                        <div class="col-3">
+                            <ul><b>Symfony</b></ul>
+                        </div>
+                        <div class="col-5">
+                            <div class="progress">
+                                <div class="progress-bar bg-info" role="progressbar" style="width: 65%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">65%</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-3">        
+                            <ul><b>PHP/SQL</b></ul>
+                        </div>
+                        <div class="col-5">
+                            <div class="progress">
+                                <div class="progress-bar bg-info" role="progressbar" style="width: 80%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">80%</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-3">   
+                            <ul><b>HTML/CSS/Boostrap</b></ul>
+                        </div>
+                        <div class="col-5"> 
+                            <div class="progress">
+                                <div class="progress-bar bg-info" role="progressbar" style="width: 90%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">90%</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-3">
+                            <ul><b>Javascript</b></ul>
+                        </div>
+                        <div class="col-5"> 
+                            <div class="progress">
+                                <div class="progress-bar bg-info" role="progressbar" style="width: 50%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">50%</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-3">            
+                            <ul><b>Git</b></ul>
+                        </div>
+                        <div class="col-5"> 
+                            <div class="progress">
+                                <div class="progress-bar bg-info" role="progressbar" style="width: 65%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">65%</div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- INTERETS -->
+                    <div class="text-center" >
+                        <h2>INTERETS</h2>
+                    </div>
+                    <br>
+                    <div class="text-center" id="interets" >
+                        <p>Jeux vidéos, Faune et Flore, Natation, Aquarelle, Digital painting</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Bootstrap Popper et Javascript plugins -->
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+        <!-- JS -->
+        <script src="js1.js"></script>
+    </body>
+</html>

@@ -1,0 +1,62 @@
+body{
+    margin:0%;
+    padding: 0;
+}
+
+img{
+    width: 75%;
+    border-radius: 50%;
+}
+
+h2{
+    color: white;
+    
+    background-color:rgb(158, 50, 91);
+}
+
+.nom {
+    background-color: pink;
+    color:rgb(158, 50, 91);
+    margin-top: 25px;
+}
+
+#titre {
+    color: black;
+    margin-bottom: 35px;
+}
+
+h3{
+    color: rgb(158, 50, 91);
+    margin-top: 35px;
+
+}
+
+h5{
+    color: rgb(158, 50, 91);
+    margin-top: 10px;
+}
+
+#encadre{
+    background-color:pink;
+
+}
+
+.intitule {
+    font-size: 20px;
+    text-decoration: underline;
+}
+
+b{
+    font-size:x-large;
+    text-align:justify;
+    margin-bottom:0;
+    padding-left: 30px;
+}
+
+ul{
+    padding-left: 0%;
+}
+
+#interets {
+    font-size: 20px;
+}
