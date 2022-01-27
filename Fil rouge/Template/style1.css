@@ -1,0 +1,56 @@
+
+html, body {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+body{
+
+    display: flex;
+    flex-direction: column;
+    background-image: url("assets/src/background\ village.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.bg-center {
+    background-color:rgb(45, 192, 106);
+}
+
+#navbar1{
+    font-size:2em;
+    background-color: rgb(38, 105, 66);
+}
+
+#navbar2{
+    font-size: 1.5em;
+    background-color: rgb(45, 192, 106);
+}
+
+#navbar1 .nav-link{
+    color: white;
+}
+
+.logo {
+    z-index: 1;
+    position: absolute;
+    float: left;
+    width: 18%;
+    margin: 0%;
+}
+
+/* .overlay-image {
+    position: relative;
+    width: 100%;
+   } */
+
+   /* Image originale */
+.overlay-image .image {
+    display: block;
+    width: 100%;
+    
+}
+
