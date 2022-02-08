@@ -25,4 +25,10 @@ a{
     font-size:200%;
     
 }
+.card-text{
+    font-size: 50%;
+}
 
+.addtitre{
+    text-align: center;
+}
