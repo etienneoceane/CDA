@@ -47,6 +47,11 @@ class Disc
      */
     private $disc_price;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Artist::class, inversedBy="disc")
+     */
+    private $artist;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -120,6 +125,18 @@ class Disc
     public function setDiscPrice(?string $disc_price): self
     {
         $this->disc_price = $disc_price;
+
+        return $this;
+    }
+
+    public function getArtist(): ?Artist
+    {
+        return $this->artist;
+    }
+
+    public function setArtist(?Artist $artist): self
+    {
+        $this->artist = $artist;
 
         return $this;
     }

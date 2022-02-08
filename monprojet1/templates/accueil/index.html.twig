@@ -9,12 +9,9 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/home/etienneoceane/Documents/CDA/monprojet1/src/Controller/AccueilController.php'|file_link(0) }}">src/Controller/AccueilController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/home/etienneoceane/Documents/CDA/monprojet1/templates/accueil/index.html.twig'|file_link(0) }}">templates/accueil/index.html.twig</a></code></li>
-    </ul>
+    {% for artist in artists %}
+    <h1>Les artistes de notre catalogue {{ artist.artistname }}! ✅</h1>
+    
+    {% endfor %}
 </div>
 {% endblock %}
