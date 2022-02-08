@@ -3,8 +3,8 @@
     
                 // Paramètres de connexion serveur local
                 $host ="127.0.0.1";
-                $login="root";     // Votre loggin d'accès au serveur de BDD 
-                $password="";    // Le Password pour vous identifier auprès du serveur
+                $login="admin";     // Votre loggin d'accès au serveur de BDD 
+                $password="root";    // Le Password pour vous identifier auprès du serveur
                 $base ="record";    // La bdd avec laquelle vous voulez travailler 
         
         

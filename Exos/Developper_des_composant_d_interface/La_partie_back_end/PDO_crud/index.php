@@ -14,8 +14,8 @@ $tableau = $requete->fetchAll(PDO::FETCH_OBJ)
             <?php foreach ($tableau as $row)
                 { ?>
                     <div class="card col-2 p-2 m-1 ">
-                            <div class="card-body">
-                                <p class="text"><a id="a" href="artistes.php?disc_genre=<?php echo $row->disc_genre ?>"><?php echo $row->disc_genre ?></a></br>
+                            <div class="card-body genre">
+                                <p class="text-center"><a id="a" href="artistes.php?disc_genre=<?php echo $row->disc_genre ?>"><?php echo $row->disc_genre ?></a></br>
                             </div>
                     </div>
                 <?php

@@ -17,19 +17,12 @@ a{
     color:black;
     text-decoration: none;
 }
-.card{
-    background-color: rgb(124, 117, 109);
-    height: 200px;
-    text-align: center;
 
     
-}
+
 .card-body{
     padding: auto;
     font-size:200%;
     
 }
-#a{
-    color: white;
-    text-align: center;
-}
+
