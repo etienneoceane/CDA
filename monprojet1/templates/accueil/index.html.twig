@@ -9,9 +9,9 @@
 </style>
 
 <div class="example-wrapper">
-    {% for artist in artists %}
-    <h1>Les artistes de notre catalogue {{ artist.artistname }}! ✅</h1>
-    
-    {% endfor %}
+    <h1>Les artistes de notre catalogue </h1>
+        {% for artist in artists %}
+        <ul>{{ artist.artistname }} !</ul>
+        {% endfor %}
 </div>
 {% endblock %}
