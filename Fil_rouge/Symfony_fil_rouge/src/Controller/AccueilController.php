@@ -2,30 +2,19 @@
 
 namespace App\Controller;
 
-use App\Repository\ArtistRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-    /**
-     * @Route("/accueil", name="accueil")
-     */
-
 class AccueilController extends AbstractController
 {
     /**
-     * @Route("/liste", name="artiste_liste")
+     * @Route("/accueil", name="accueil")
      */
-
-    public function artiste_liste(ArtistRepository $repo): Response
+    public function index(): Response
     {
-
-        $liste_artistes= $repo->findAll();
-        
-
         return $this->render('accueil/index.html.twig', [
-            'artists' => $liste_artistes,
-
+            'controller_name' => 'AccueilController',
         ]);
     }
 }
