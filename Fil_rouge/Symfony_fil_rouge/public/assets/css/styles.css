@@ -5,10 +5,9 @@ html, body {
 }
 
 body{
-
     display: flex;
     flex-direction: column;
-    background-image: url("assets/src/background\ village.png");
+    background-image: url("public/assets/src/background_village.png")!important;
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
@@ -24,11 +23,6 @@ body{
     background-color: rgb(38, 105, 66);
 }
 
-#navbar2{
-    font-size: 1.5em;
-    background-color: rgb(45, 192, 106);
-}
-
 #navbar1 .nav-link{
     color: white;
 }
@@ -39,18 +33,24 @@ body{
  color: rgb(46, 50, 65);
 }
 
-/* Couleur utilisée pour les liens de la navbar2 lorsque la souris passe dessus */
-#navbar2 .navbar-nav > li > a:hover,
-#navbar2 .navbar-nav > li > a:focus {
- color: white;
-}
-
-/* Couleur utilisée pour le lien actif (celui qui est affiché sur la page) */
+/* Couleur utilisée pour le lien actif de la navbar 1 (celui qui est affiché sur la page) */
 #navbar1 .navbar-nav > li > a.active, 
 #navbar1 .navbar-nav > li > a.active:hover, 
 #navbar1 .navbar-nav > li > a.active:focus {
  text-decoration-line: underline;
  text-decoration-style: solid;
+ color:rgb(46, 50, 65);
+}
+
+#navbar2{
+    font-size: 1.5em;
+    background-color: rgb(45, 192, 106);
+}
+
+/* Couleur utilisée pour les liens de la navbar2 lorsque la souris passe dessus */
+#navbar2 .navbar-nav > li > a:hover,
+#navbar2 .navbar-nav > li > a:focus {
+ color: white;
 }
 
 .logo {
@@ -68,6 +68,7 @@ body{
    } */
 
    /* Image originale */
+   
 .overlay-image .image {
     display: block;
     width: 100%;
