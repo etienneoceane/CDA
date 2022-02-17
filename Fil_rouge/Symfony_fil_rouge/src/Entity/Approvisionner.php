@@ -40,20 +40,16 @@ class Approvisionner
     private $qtite;
 
     /**
-     * @ORM\OneToMany(targetEntity=Produit::class, mappedBy="approvisionner")
+     * @ORM\ManyToOne(targetEntity=Fournisseur::class, inversedBy="approvisionners")
+     */
+    private $fournisseurs;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Produit::class, inversedBy="approvisionners")
      */
     private $produits;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Fournisseur::class, mappedBy="approvisionner")
-     */
-    private $fournisseur;
-
-    public function __construct()
-    {
-        $this->produits = new ArrayCollection();
-        $this->fournisseur = new ArrayCollection();
-    }
+    
 
     public function getId(): ?int
     {
@@ -108,63 +104,29 @@ class Approvisionner
         return $this;
     }
 
-    /**
-     * @return Collection|Produit[]
-     */
-    public function getProduits(): Collection
+    public function getFournisseurs(): ?Fournisseur
+    {
+        return $this->fournisseurs;
+    }
+
+    public function setFournisseurs(?Fournisseur $fournisseurs): self
+    {
+        $this->fournisseurs = $fournisseurs;
+
+        return $this;
+    }
+
+    public function getProduits(): ?Produit
     {
         return $this->produits;
     }
 
-    public function addProduit(Produit $produit): self
+    public function setProduits(?Produit $produits): self
     {
-        if (!$this->produits->contains($produit)) {
-            $this->produits[] = $produit;
-            $produit->setApprovisionner($this);
-        }
+        $this->produits = $produits;
 
         return $this;
     }
 
-    public function removeProduit(Produit $produit): self
-    {
-        if ($this->produits->removeElement($produit)) {
-            // set the owning side to null (unless already changed)
-            if ($produit->getApprovisionner() === $this) {
-                $produit->setApprovisionner(null);
-            }
-        }
 
-        return $this;
-    }
-
-    /**
-     * @return Collection|Fournisseur[]
-     */
-    public function getFournisseur(): Collection
-    {
-        return $this->fournisseur;
-    }
-
-    public function addFournisseur(Fournisseur $fournisseur): self
-    {
-        if (!$this->fournisseur->contains($fournisseur)) {
-            $this->fournisseur[] = $fournisseur;
-            $fournisseur->setApprovisionner($this);
-        }
-
-        return $this;
-    }
-
-    public function removeFournisseur(Fournisseur $fournisseur): self
-    {
-        if ($this->fournisseur->removeElement($fournisseur)) {
-            // set the owning side to null (unless already changed)
-            if ($fournisseur->getApprovisionner() === $this) {
-                $fournisseur->setApprovisionner(null);
-            }
-        }
-
-        return $this;
-    }
 }

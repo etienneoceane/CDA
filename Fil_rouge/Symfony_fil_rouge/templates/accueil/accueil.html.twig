@@ -1,0 +1,169 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+{# CSS #}
+<style>
+.overlay-image .image {
+    display: block;
+    width: 100%;
+}
+
+</style>
+
+
+
+{# CORPS DE LA PAGE #}
+<section>
+	<div class="container bg-center">
+		<div class="row p-4">
+			<div class="col-sm-9">
+				<img src="assets/src/pub guitare.png" class="w-100" height="500">
+			</div>
+			<div class="col-sm-3 p-0">
+				<img src="assets/src/banniere droite prix.png" class="w-100" height="500">
+			</div>
+		</div>
+
+
+		<div class="row mt-2 mb-2">
+			<img src="assets/src/banniere centre 4 pictos.png" class="w-100">
+		</div>
+
+		<div class="row p-4">
+			<h2>Nos Catégories</h2>
+		</div>
+		{# CORDES #}
+		<div class="row pt-2 pb-2">
+			<div class="col-sm-3 p-0">
+				<div class="overlay-image ">
+					<a href="{{'/cordes'}}">
+
+						<div class="hover">
+							<img class="image_accueil" src="assets/src/CATEGORIES guitare.png" alt="guitare" height="183"/>
+						</div>
+					</a>
+				</div>
+			</div>
+			{# BATTERIE #}
+			<div class="col-sm-3 p-0">
+				<div class="overlay-image ">
+					<a href="#">
+
+						<div class="hover">
+							<img class="image_accueil" src="assets/src/CATEGORIES batterie.png" alt="batterie" height="183"/>
+						</div>
+					</a>
+				</div>
+			</div>
+			{# PIANO #}
+			<div class="col-sm-3 p-0">
+				<div class="overlay-image">
+					<a href="#">
+						<div class="hover">
+							<img class="image" src="assets/src/CATEGORIES piano.png" alt="piano" height="183"/>
+						</div>
+					</a>
+				</div>
+			</div>
+			{# MICRO #}
+			<div class="col-sm-3 p-0">
+				<div class="overlay-image">
+					<a href="#">
+						<div class="hover">
+							<img class="image" src="assets/src/CATEGORIES micro.png" alt="micro" height="183"/>
+						</div>
+					</a>
+				</div>
+			</div>
+			{# SAXO #}
+			<div class="col-sm-3 p-0">
+				<div class="overlay-image">
+					<a href="#">
+						<div class="hover">
+							<img class="image" src="assets/src/CATEGORIES saxo.png" alt="sono" height="183"/>
+						</div>
+					</a>
+				</div>
+			</div>
+			{# SONO #}
+			<div class="col-sm-3 p-0">
+				<div class="overlay-image">
+					<a href="#">
+						<div class="hover">
+							<img class="image" src="assets/src/CATEGORIES sono.png" alt="cases" height="183"/>
+						</div>
+					</a>
+				</div>
+			</div>
+			{# CASES #}
+			<div class="col-sm-3 p-0">
+				<div class="overlay-image">
+					<a href="#">
+						<div class="hover">
+							<img class="image" src="assets/src/CATEGORIES cases.png" alt="accessoires" height="183"/>
+						</div>
+					</a>
+				</div>
+			</div>
+			{# CABLES #}
+			<div class="col-sm-3 p-0">
+				<div class="overlay-image">
+					<a href="#">
+						<div class="hover">
+							<img class="image" src="assets/src/CATEGORIES cable.png" alt="saxo" height="183"/>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="row p-4">
+			<div class="col-sm-6">
+				<h2>Nos meilleurs ventes</h2>
+			</div>
+			<div class="col-sm-6">
+				<h2>Nos partenaires</h2>
+			</div>
+			<div class="col-sm-2">
+				<div class="overlay-image">
+					<a
+						href="#">
+						<div class="hover">
+							<img class="image" src="assets/src/TOP VENTES guitare.png" alt="Top vente guitare roll over" height="248"/>
+						</div>
+					</a>
+				</div>
+			</div>
+			<div class="col-sm-2">
+				<div class="overlay-image">
+					<a
+						href="#">
+						<div class="hover">
+							<img class="image" src="assets/src/TOP VENTES piano.png" alt="Top vente saxo" height="248"/>
+						</div>
+					</a>
+				</div>
+			</div>
+			<div class="col-sm-2">
+				<div class="overlay-image">
+					<a
+						href="#">
+						<div class="hover">
+							<img class="image" src="assets/src/TOP VENTES saxo.png " alt="Top vente piano" height="248"/>
+						</div>
+					</a>
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<img class="w-100" src="assets/src/partenaires 4 logos.png" alt="saxo" height="248"/>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+
+    {% endblock %}

@@ -40,14 +40,17 @@ class Livraison
     private $commande;
 
     /**
-     * @ORM\OneToMany(targetEntity=Expedition::class, mappedBy="livraison")
+     * @ORM\OneToMany(targetEntity=Expedition::class, mappedBy="Livraison")
      */
     private $expeditions;
+
+    
 
     public function __construct()
     {
         $this->commande = new ArrayCollection();
         $this->expeditions = new ArrayCollection();
+        
     }
 
     public function getId(): ?int
@@ -150,4 +153,5 @@ class Livraison
 
         return $this;
     }
+
 }

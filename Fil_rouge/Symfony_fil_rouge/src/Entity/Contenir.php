@@ -30,14 +30,14 @@ class Contenir
     private $prix_vente;
 
     /**
-     * @ORM\OneToMany(targetEntity=Produit::class, mappedBy="contenir")
-     */
-    private $Produits;
-
-    /**
      * @ORM\OneToMany(targetEntity=Commande::class, mappedBy="contenir")
      */
     private $commandes;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Produit::class, inversedBy="contenirs")
+     */
+    private $produits;
 
     public function __construct()
     {
@@ -74,35 +74,7 @@ class Contenir
         return $this;
     }
 
-    /**
-     * @return Collection|Produit[]
-     */
-    public function getProduits(): Collection
-    {
-        return $this->Produits;
-    }
 
-    public function addProduit(Produit $produit): self
-    {
-        if (!$this->Produits->contains($produit)) {
-            $this->Produits[] = $produit;
-            $produit->setContenir($this);
-        }
-
-        return $this;
-    }
-
-    public function removeProduit(Produit $produit): self
-    {
-        if ($this->Produits->removeElement($produit)) {
-            // set the owning side to null (unless already changed)
-            if ($produit->getContenir() === $this) {
-                $produit->setContenir(null);
-            }
-        }
-
-        return $this;
-    }
 
     /**
      * @return Collection|Commande[]
@@ -130,6 +102,18 @@ class Contenir
                 $commande->setContenir(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getProduits(): ?Produit
+    {
+        return $this->produits;
+    }
+
+    public function setProduits(?Produit $produits): self
+    {
+        $this->produits = $produits;
 
         return $this;
     }

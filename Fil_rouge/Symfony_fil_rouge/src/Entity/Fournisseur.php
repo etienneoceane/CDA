@@ -32,6 +32,11 @@ class Fournisseur
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
+    private $raison;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
     private $adresse;
 
     /**
@@ -60,11 +65,17 @@ class Fournisseur
     private $contact_prenom;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Approvisionner::class, inversedBy="fournisseur")
+     * @ORM\OneToMany(targetEntity=Approvisionner::class, mappedBy="fournisseurs")
      */
-    private $approvisionner;
+    private $approvisionners;
 
-  
+
+
+    public function __construct()
+    {
+        $this->approvisionners = new ArrayCollection();
+    }
+
 
     public function getId(): ?int
     {
@@ -94,6 +105,19 @@ class Fournisseur
 
         return $this;
     }
+
+    public function getRaison(): ?string
+    {
+        return $this->raison;
+    }
+
+    public function setRaison(?string $raison): self
+    {
+        $this->raison = $raison;
+
+        return $this;
+    }
+
 
     public function getAdresse(): ?string
     {
@@ -167,17 +191,35 @@ class Fournisseur
         return $this;
     }
 
-    public function getApprovisionner(): ?Approvisionner
+
+
+    /**
+     * @return Collection|Approvisionner[]
+     */
+    public function getApprovisionners(): Collection
     {
-        return $this->approvisionner;
+        return $this->approvisionners;
     }
 
-    public function setApprovisionner(?Approvisionner $approvisionner): self
+    public function addApprovisionner(Approvisionner $approvisionner): self
     {
-        $this->approvisionner = $approvisionner;
+        if (!$this->approvisionners->contains($approvisionner)) {
+            $this->approvisionners[] = $approvisionner;
+            $approvisionner->setFournisseurs($this);
+        }
 
         return $this;
     }
 
-  
+    public function removeApprovisionner(Approvisionner $approvisionner): self
+    {
+        if ($this->approvisionners->removeElement($approvisionner)) {
+            // set the owning side to null (unless already changed)
+            if ($approvisionner->getFournisseurs() === $this) {
+                $approvisionner->setFournisseurs(null);
+            }
+        }
+
+        return $this;
+    }  
 }

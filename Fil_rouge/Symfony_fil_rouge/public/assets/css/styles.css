@@ -7,11 +7,15 @@ html, body {
 body{
     display: flex;
     flex-direction: column;
-    background-image: url("public/assets/src/background_village.png")!important;
     background-repeat: no-repeat;
+    background-image: url(/assets/src/background_village.png);
     background-position: center;
     background-attachment: fixed;
     background-size: cover;
+}
+
+h2{
+    color:rgb(46, 50, 65);
 }
 
 .bg-center {
@@ -30,16 +34,16 @@ body{
 /* Couleur utilisée pour les liens de la navbar1 lorsque la souris passe dessus */
 #navbar1 .navbar-nav > li > a:hover,
 #navbar1 .navbar-nav > li > a:focus {
- color: rgb(46, 50, 65);
+    color: rgb(46, 50, 65);
 }
 
 /* Couleur utilisée pour le lien actif de la navbar 1 (celui qui est affiché sur la page) */
 #navbar1 .navbar-nav > li > a.active, 
 #navbar1 .navbar-nav > li > a.active:hover, 
 #navbar1 .navbar-nav > li > a.active:focus {
- text-decoration-line: underline;
- text-decoration-style: solid;
- color:rgb(46, 50, 65);
+    text-decoration-line: underline;
+    text-decoration-style: solid;
+    color:rgb(46, 50, 65);
 }
 
 #navbar2{
@@ -50,7 +54,7 @@ body{
 /* Couleur utilisée pour les liens de la navbar2 lorsque la souris passe dessus */
 #navbar2 .navbar-nav > li > a:hover,
 #navbar2 .navbar-nav > li > a:focus {
- color: white;
+    color: white;
 }
 
 .logo {
@@ -68,10 +72,14 @@ body{
    } */
 
    /* Image originale */
-   
-.overlay-image .image {
-    display: block;
-    width: 100%;
-    
+
+.breadcrumb {
+    background-color: unset  !important;
+    font-size:1.5em
 }
+
+.breadcrumb-item.active,.breadcrumb-item+.breadcrumb-item::before{
+    color:white;
+}
+
 

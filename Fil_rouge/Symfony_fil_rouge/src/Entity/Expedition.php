@@ -19,64 +19,45 @@ class Expedition
      */
     private $id;
 
+
     /**
-     * @ORM\OneToMany(targetEntity=Produit::class, mappedBy="expedition")
+     * @ORM\ManyToOne(targetEntity=Produit::class, inversedBy="expeditions")
      */
     private $produits;
 
     /**
      * @ORM\ManyToOne(targetEntity=Livraison::class, inversedBy="expeditions")
      */
-    private $livraison;
+    private $Livraison;
 
-    public function __construct()
-    {
-        $this->produits = new ArrayCollection();
-    }
+
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @return Collection|Produit[]
-     */
-    public function getProduits(): Collection
+
+    public function getProduits(): ?Produit
     {
         return $this->produits;
     }
 
-    public function addProduit(Produit $produit): self
+    public function setProduits(?Produit $produits): self
     {
-        if (!$this->produits->contains($produit)) {
-            $this->produits[] = $produit;
-            $produit->setExpedition($this);
-        }
-
-        return $this;
-    }
-
-    public function removeProduit(Produit $produit): self
-    {
-        if ($this->produits->removeElement($produit)) {
-            // set the owning side to null (unless already changed)
-            if ($produit->getExpedition() === $this) {
-                $produit->setExpedition(null);
-            }
-        }
+        $this->produits = $produits;
 
         return $this;
     }
 
     public function getLivraison(): ?Livraison
     {
-        return $this->livraison;
+        return $this->Livraison;
     }
 
-    public function setLivraison(?Livraison $livraison): self
+    public function setLivraison(?Livraison $Livraison): self
     {
-        $this->livraison = $livraison;
+        $this->Livraison = $Livraison;
 
         return $this;
     }

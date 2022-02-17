@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ProduitRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -48,20 +50,28 @@ class Produit
      */
     private $sousrubrique;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Expedition::class, inversedBy="produits")
-     */
-    private $expedition;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Approvisionner::class, inversedBy="produits")
+     * @ORM\OneToMany(targetEntity=Contenir::class, mappedBy="produits")
      */
-    private $approvisionner;
+    private $contenirs;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Contenir::class, inversedBy="Produits")
+     * @ORM\OneToMany(targetEntity=Approvisionner::class, mappedBy="produits")
      */
-    private $contenir;
+    private $approvisionners;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Expedition::class, mappedBy="produits")
+     */
+    private $expeditions;
+
+    public function __construct()
+    {
+        $this->contenirs = new ArrayCollection();
+        $this->approvisionners = new ArrayCollection();
+        $this->expeditions = new ArrayCollection();
+    }
 
 
 
@@ -144,38 +154,93 @@ class Produit
         return $this;
     }
 
-    public function getExpedition(): ?Expedition
+
+    /**
+     * @return Collection|Contenir[]
+     */
+    public function getContenirs(): Collection
     {
-        return $this->expedition;
+        return $this->contenirs;
     }
 
-    public function setExpedition(?Expedition $expedition): self
+    public function addContenir(Contenir $contenir): self
     {
-        $this->expedition = $expedition;
+        if (!$this->contenirs->contains($contenir)) {
+            $this->contenirs[] = $contenir;
+            $contenir->setProduits($this);
+        }
 
         return $this;
     }
 
-    public function getApprovisionner(): ?Approvisionner
+    public function removeContenir(Contenir $contenir): self
     {
-        return $this->approvisionner;
-    }
-
-    public function setApprovisionner(?Approvisionner $approvisionner): self
-    {
-        $this->approvisionner = $approvisionner;
+        if ($this->contenirs->removeElement($contenir)) {
+            // set the owning side to null (unless already changed)
+            if ($contenir->getProduits() === $this) {
+                $contenir->setProduits(null);
+            }
+        }
 
         return $this;
     }
 
-    public function getContenir(): ?Contenir
+    /**
+     * @return Collection|Approvisionner[]
+     */
+    public function getApprovisionners(): Collection
     {
-        return $this->contenir;
+        return $this->approvisionners;
     }
 
-    public function setContenir(?Contenir $contenir): self
+    public function addApprovisionner(Approvisionner $approvisionner): self
     {
-        $this->contenir = $contenir;
+        if (!$this->approvisionners->contains($approvisionner)) {
+            $this->approvisionners[] = $approvisionner;
+            $approvisionner->setProduits($this);
+        }
+
+        return $this;
+    }
+
+    public function removeApprovisionner(Approvisionner $approvisionner): self
+    {
+        if ($this->approvisionners->removeElement($approvisionner)) {
+            // set the owning side to null (unless already changed)
+            if ($approvisionner->getProduits() === $this) {
+                $approvisionner->setProduits(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Expedition[]
+     */
+    public function getExpeditions(): Collection
+    {
+        return $this->expeditions;
+    }
+
+    public function addExpedition(Expedition $expedition): self
+    {
+        if (!$this->expeditions->contains($expedition)) {
+            $this->expeditions[] = $expedition;
+            $expedition->setProduits($this);
+        }
+
+        return $this;
+    }
+
+    public function removeExpedition(Expedition $expedition): self
+    {
+        if ($this->expeditions->removeElement($expedition)) {
+            // set the owning side to null (unless already changed)
+            if ($expedition->getProduits() === $this) {
+                $expedition->setProduits(null);
+            }
+        }
 
         return $this;
     }
