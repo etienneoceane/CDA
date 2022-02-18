@@ -34,6 +34,11 @@ class Rubrique
      */
     private $sousRubriques;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $photos;
+
     public function __construct()
     {
         $this->sousRubriques = new ArrayCollection();
@@ -94,6 +99,18 @@ class Rubrique
                 $sousRubrique->setRubrique(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPhotos(): ?string
+    {
+        return $this->photos;
+    }
+
+    public function setPhotos(?string $photos): self
+    {
+        $this->photos = $photos;
 
         return $this;
     }

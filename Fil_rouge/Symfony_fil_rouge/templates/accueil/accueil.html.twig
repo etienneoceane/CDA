@@ -35,91 +35,17 @@
 			<h2>Nos Catégories</h2>
 		</div>
 		{# CORDES #}
-		<div class="row pt-2 pb-2">
-			<div class="col-sm-3 p-0">
-				<div class="overlay-image ">
-					<a href="{{'/cordes'}}">
-
-						<div class="hover">
-							<img class="image_accueil" src="assets/src/CATEGORIES guitare.png" alt="guitare" height="183"/>
-						</div>
-					</a>
-				</div>
-			</div>
-			{# BATTERIE #}
-			<div class="col-sm-3 p-0">
-				<div class="overlay-image ">
-					<a href="#">
-
-						<div class="hover">
-							<img class="image_accueil" src="assets/src/CATEGORIES batterie.png" alt="batterie" height="183"/>
-						</div>
-					</a>
-				</div>
-			</div>
-			{# PIANO #}
-			<div class="col-sm-3 p-0">
+		<div class="row p-2">
+			{% for rubrique in rubriques %}
+			<div class="col-sm-3 p-0 ">
 				<div class="overlay-image">
-					<a href="#">
-						<div class="hover">
-							<img class="image" src="assets/src/CATEGORIES piano.png" alt="piano" height="183"/>
-						</div>
+					<a href="{{'/'}}{{rubrique.nom}}">	
+						<img class="image_accueil" src="assets/src/{{rubrique.photos}}" alt="{{rubrique.nom}}"height="183px"/>
 					</a>
 				</div>
 			</div>
-			{# MICRO #}
-			<div class="col-sm-3 p-0">
-				<div class="overlay-image">
-					<a href="#">
-						<div class="hover">
-							<img class="image" src="assets/src/CATEGORIES micro.png" alt="micro" height="183"/>
-						</div>
-					</a>
-				</div>
-			</div>
-			{# SAXO #}
-			<div class="col-sm-3 p-0">
-				<div class="overlay-image">
-					<a href="#">
-						<div class="hover">
-							<img class="image" src="assets/src/CATEGORIES saxo.png" alt="sono" height="183"/>
-						</div>
-					</a>
-				</div>
-			</div>
-			{# SONO #}
-			<div class="col-sm-3 p-0">
-				<div class="overlay-image">
-					<a href="#">
-						<div class="hover">
-							<img class="image" src="assets/src/CATEGORIES sono.png" alt="cases" height="183"/>
-						</div>
-					</a>
-				</div>
-			</div>
-			{# CASES #}
-			<div class="col-sm-3 p-0">
-				<div class="overlay-image">
-					<a href="#">
-						<div class="hover">
-							<img class="image" src="assets/src/CATEGORIES cases.png" alt="accessoires" height="183"/>
-						</div>
-					</a>
-				</div>
-			</div>
-			{# CABLES #}
-			<div class="col-sm-3 p-0">
-				<div class="overlay-image">
-					<a href="#">
-						<div class="hover">
-							<img class="image" src="assets/src/CATEGORIES cable.png" alt="saxo" height="183"/>
-						</div>
-					</a>
-				</div>
-			</div>
-		</div>
-
-
+			{% endfor %}
+			
 		<div class="row p-4">
 			<div class="col-sm-6">
 				<h2>Nos meilleurs ventes</h2>

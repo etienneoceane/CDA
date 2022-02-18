@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+{# CSS #}$
+<style>
+.overlay-image .image {
+    display: block;
+    height:45%;
+    width:45%
+}
+</style>
+
+
+<section>
+	<div class="container bg-center">
+	{# MODIFIER LE FIL D'ARIANNE ENLEVER LE BRUT ET PASSER LES VALEURS CONTROLLEUR #}
+		<div class="row p-3">
+			<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+				<ol class="breadcrumb" id="breadcrumb">
+					<li class="breadcrumb-item ">
+						<a id="arianne" href="{{'/accueil'}}">Accueil</a>
+					</li>
+					<li class="breadcrumb-item active" aria-current="page">Cordes</li>
+				</ol>
+			</nav>
+		</div>
+        <div class="row pb-5">
+		{% for sousrubrique in sousrubriques %}
+            <div class="col-sm-4 p-0 mt-3 mb-3">
+				<div class="overlay-image">
+					<a href="{{'/details'}}">
+						<div class="hover">
+							<img class="image mx-auto" src="assets/src/{{sousrubrique.photos}}" alt="{{sousrubrique.nom}}" />
+                        </div>
+                        <div class="liens">
+                            <span>{{sousrubrique.nom}}</span>
+                        </div>
+					</a>
+				</div>
+            </div>
+		{% endfor %}
+            
+			
+        </div>    
+	</div>
+</section>
+
+
+{% endblock %}

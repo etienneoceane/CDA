@@ -40,6 +40,11 @@ class SousRubrique
      */
     private $produits;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $photos;
+
     public function __construct()
     {
         $this->produits = new ArrayCollection();
@@ -112,6 +117,18 @@ class SousRubrique
                 $produit->setSousrubrique(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPhotos(): ?string
+    {
+        return $this->photos;
+    }
+
+    public function setPhotos(?string $photos): self
+    {
+        $this->photos = $photos;
 
         return $this;
     }
