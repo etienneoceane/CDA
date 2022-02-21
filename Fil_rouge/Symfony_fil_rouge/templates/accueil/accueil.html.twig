@@ -35,12 +35,12 @@
 			<h2>Nos Catégories</h2>
 		</div>
 		{# CORDES #}
-		<div class="row p-2">
-			{% for rubrique in rubriques %}
+		<div class="row p-2">			
+			{% for row in home %}
 			<div class="col-sm-3 p-0 ">
 				<div class="overlay-image">
-					<a href="{{'/'}}{{rubrique.nom}}">	
-						<img class="image_accueil" src="assets/src/{{rubrique.photos}}" alt="{{rubrique.nom}}"height="183px"/>
+					<a href="{{ path('sousrubrique',{id:row.id})}}">	 
+						<img class="image_accueil" src="assets/src/{{row.photos}}" alt="{{row.nom}}"height="183px"/>
 					</a>
 				</div>
 			</div>

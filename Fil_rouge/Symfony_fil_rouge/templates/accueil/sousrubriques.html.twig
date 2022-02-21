@@ -2,7 +2,7 @@
 
 
 {% block body %}
-{# CSS #}$
+{# CSS #}
 <style>
 .overlay-image .image {
     display: block;
@@ -14,27 +14,28 @@
 
 <section>
 	<div class="container bg-center">
-	{# MODIFIER LE FIL D'ARIANNE ENLEVER LE BRUT ET PASSER LES VALEURS CONTROLLEUR #}
+	
 		<div class="row p-3">
 			<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
 				<ol class="breadcrumb" id="breadcrumb">
 					<li class="breadcrumb-item ">
 						<a id="arianne" href="{{'/accueil'}}">Accueil</a>
 					</li>
-					<li class="breadcrumb-item active" aria-current="page">Cordes</li>
+					{# Récupère le 1er objet de liste sous rubrique, et y récupère le nom de sa rubrique associée #}
+					<li class="breadcrumb-item active" aria-current="page">{{listesousrubriques|first.rubrique.nom}}</li>
 				</ol>
 			</nav>
 		</div>
-        <div class="row pb-5">
-		{% for sousrubrique in sousrubriques %}
+        <div class="row pb-5" style="justify-content:center">
+		{% for row in listesousrubriques %}
             <div class="col-sm-4 p-0 mt-3 mb-3">
 				<div class="overlay-image">
-					<a href="{{'/details'}}">
+					<a href="{{ path('listeproduits',{id:row.id})}}">
 						<div class="hover">
-							<img class="image mx-auto" src="assets/src/{{sousrubrique.photos}}" alt="{{sousrubrique.nom}}" />
+							<img class="image mx-auto" src="/assets/src/{{row.photos}}" alt="{{row.nom}}" />
                         </div>
                         <div class="liens">
-                            <span>{{sousrubrique.nom}}</span>
+                            <span>{{row.nom}}</span>
                         </div>
 					</a>
 				</div>

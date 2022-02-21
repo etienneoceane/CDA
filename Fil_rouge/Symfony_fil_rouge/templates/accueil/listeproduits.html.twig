@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+
+<section>
+	<div class="container bg-center">
+		{# MODIFIER LE FIL D'ARIANNE ENLEVER LE BRUT ET PASSER LES VALEURS CONTROLLEUR #}
+		<div class="row p-3">
+			<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+				<ol class="breadcrumb" id="breadcrumb">
+					<li class="breadcrumb-item ">
+						<a id="arianne" href="{{'/accueil'}}">Accueil</a>
+					</li>
+					<li class="breadcrumb-item active" aria-current="page">{{produit|first.sousrubrique.rubrique.nom}}</li>
+					<li class="breadcrumb-item active" aria-current="page">{{produit|first.sousrubrique.nom}}</li>
+				</ol>
+			</nav>
+		</div>
+		
+		<div class="row p-5" style="justify-content:center">
+		{% for row in produit %}
+			<div class="card mb-3" style="max-width: 540px;">
+				<div class="row g-0">
+					<div class="col-md-4">
+						<img src="/assets/src/{{row.photo}}" class="img-fluid rounded-start" alt="...">
+					</div>
+					<div class="col-md-8">
+						<div class="card-body">
+							<h5 class="card-title">{{row.nom}}</h5>
+							<p class="card-text">{{row.description}}</p>
+							<p class="card-text">
+							{# {{dump(produit|first.stock)}} #}
+							{% if produit|first.stock > 0 %}
+								<small class="text-muted">En stock</small>
+							{% else %}
+								<small class="text-muted">Indisponible</small>
+							{% endif %}
+							</p>
+							<div>
+								<span style="text-align:right">{{row.prixht}} €</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+		</div>
+	</div>
+</section>
+
+
+{% endblock %}
