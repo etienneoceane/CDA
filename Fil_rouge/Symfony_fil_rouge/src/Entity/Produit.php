@@ -40,7 +40,7 @@ class Produit
     private $stock;
 
     /**
-     * @ORM\Column(type="decimal", precision=10, scale=0, nullable=true)
+     * @ORM\Column(type="decimal", precision=10, scale=2, nullable=true)
      */
     private $prixht;
 

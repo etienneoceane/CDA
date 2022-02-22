@@ -2,7 +2,37 @@
 
 
 {% block body %}
+{# CSS #}
+<style>
+span {
+font-size: 2.5em;
+}
+.carte{
+	max-width: 60%;
+}
+.dispo{
+	position: absolute;
+	bottom:5%;
+}
+{# .prix{
+	position: absolute;
+	top:50%;
+	bottom:50%;
+	right:0%;
+}
+ #}
 
+.quantite input
+{
+    margin: .4rem 0;
+	width: 15% !important;
+	border-radius:50px;
+	text-align:center
+}
+.quantite{
+	display:inline-block 
+}
+</style>
 
 <section>
 	<div class="container bg-center">
@@ -13,42 +43,55 @@
 					<li class="breadcrumb-item ">
 						<a id="arianne" href="{{'/accueil'}}">Accueil</a>
 					</li>
-					<li class="breadcrumb-item active" aria-current="page">{{produit|first.sousrubrique.rubrique.nom}}</li>
-					<li class="breadcrumb-item active" aria-current="page">{{produit|first.sousrubrique.nom}}</li>
+					{# Récupère le 1er objet de liste sous rubrique, et y récupère le nom de sa rubrique associée #}
+					<li class="breadcrumb-item active" aria-current="page">
+						<a href="{{ path('sousrubrique',{id:produit|first.sousrubrique.rubrique.id})}}">{{produit|first.sousrubrique.rubrique.nom}}</a>
+					</li>
+					<li class="breadcrumb-item active" aria-current="page">
+						<a href="{{ path('sousrubrique',{id:produit|first.sousrubrique.id})}}">{{produit|first.sousrubrique.nom}}</a>
+					</li>
 				</ol>
 			</nav>
 		</div>
-		
+
 		<div class="row p-5" style="justify-content:center">
-		{% for row in produit %}
-			<div class="card mb-3" style="max-width: 540px;">
-				<div class="row g-0">
-					<div class="col-md-4">
-						<img src="/assets/src/{{row.photo}}" class="img-fluid rounded-start" alt="...">
-					</div>
-					<div class="col-md-8">
-						<div class="card-body">
-							<h5 class="card-title">{{row.nom}}</h5>
-							<p class="card-text">{{row.description}}</p>
-							<p class="card-text">
-							{# {{dump(produit|first.stock)}} #}
-							{% if produit|first.stock > 0 %}
-								<small class="text-muted">En stock</small>
-							{% else %}
-								<small class="text-muted">Indisponible</small>
-							{% endif %}
-							</p>
-							<div>
-								<span style="text-align:right">{{row.prixht}} €</span>
+			{% for row in produit %}
+				<div class="carte card mb-3">
+					<div class="row g-0">
+						<div class="col-md-4">
+							<img src="/assets/src/{{row.photo}}" class="img-fluid rounded-start" alt="...">
+						</div>
+						{# CARD #}
+						<div class="col-md-8">
+							<div class="row card-body">
+								<h5 class="card-title">{{row.nom}}</h5>
+								<p class="card-text">{{row.description}}</p>
+								<span>{{row.prixht}}€</span>
+								<div class="quantite">
+								<input type="number" id="quantite" name="quantite" min="0" max="1000">
+								</div>
+								<div>
+								<a class="nav-link" href="#"><img src="/assets/src/picto panier.png"></a>
+								</div>
+								<div class="stock">
+									<p class="card-text">
+										{% if row.stock > 0 %}
+											<small class="dispo" style="color:rgb(21,141,60)">En stock</small>
+										{% else %}
+											<small class="dispo" style="color:rgb(228,31,31)">Indisponible</small>
+										{% endif %}
+									</p>
+								</div>
 							</div>
 						</div>
+						{# FIN CARD #}
 					</div>
 				</div>
-			</div>
-		{% endfor %}
+			{% endfor %}
 		</div>
 	</div>
 </section>
+
 
 
 {% endblock %}
