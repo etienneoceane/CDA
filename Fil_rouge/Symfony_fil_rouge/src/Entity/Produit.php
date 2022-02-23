@@ -20,9 +20,9 @@ class Produit
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="text", length=255, nullable=true)
      */
-    private $description;
+    private $caracteristiques;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -66,6 +66,11 @@ class Produit
      */
     private $expeditions;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $description;
+
     public function __construct()
     {
         $this->contenirs = new ArrayCollection();
@@ -80,14 +85,14 @@ class Produit
         return $this->id;
     }
 
-    public function getDescription(): ?string
+    public function getCaracteristiques(): ?string
     {
-        return $this->description;
+        return $this->caracteristiques;
     }
 
-    public function setDescription(?string $description): self
+    public function setCaracteristiques(?string $caracteristiques): self
     {
-        $this->description = $description;
+        $this->caracteristiques = $caracteristiques;
 
         return $this;
     }
@@ -241,6 +246,18 @@ class Produit
                 $expedition->setProduits(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
 
         return $this;
     }

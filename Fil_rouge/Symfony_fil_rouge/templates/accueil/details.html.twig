@@ -1,0 +1,91 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+{# CSS #}
+<style>
+#spanprix {
+font-size: 2.5em;
+}
+
+#submit.add-to-cart-announce{
+font-size: 0.5em !important;
+}
+
+label{
+	margin-bottom:0;
+}
+h5{
+    font-size: 2.5em;
+}
+
+</style>
+
+<section>
+	<div class="container bg-center">
+
+    {# FIL D'ARIANNE BREADCRUMB #}
+		<div class="row p-3">
+			<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+				<ol class="breadcrumb" id="breadcrumb">
+					<li class="breadcrumb-item ">
+						<a id="arianne" href="{{'/accueil'}}">Accueil</a>
+					</li>
+					<li class="breadcrumb-item active" aria-current="page">
+						<a href="{{ path('sousrubrique',{id:produit.sousrubrique.rubrique.id})}}">{{produit.sousrubrique.rubrique.nom}}</a>
+					</li>
+					<li class="breadcrumb-item active" aria-current="page">{{produit.sousrubrique.nom}}
+					</li>
+				</ol>
+			</nav>
+
+			<form action="" method="post">
+				<div class="row p-5" style="justify-content:center">
+					{# CARD #}
+					<div class="carte card mb-3">
+						<div class="row g-0">
+							<div class="col-md-4">
+								<img src="/assets/src/{{produit.photo}}" class="img-fluid rounded-start" alt="...">
+							</div>
+							<div class="col-md-8">
+								<div class="row card-body">
+									<h5 class="card-title">{{produit.nom}}</h5>
+									<span id="spanprix">{{produit.prixht}}€</span>
+									<p class="card-text">{{produit.caracteristiques}}</p>
+									<p class="card-text">{{produit.description}}</p>
+									{# CHOIX QUANTITE #}
+									<div class="quantite mx-auto">
+										<label for="quantite">Quantité</label>
+										<input type="number" id="quantite" name="quantite" min="0" max="1000">
+									</div>
+									{# AJOUTER AU PANIER #}
+									<div class="panier">
+										<span class="a-button-inner">
+											<i class="a-icon a-icon-cart"></i>
+											<input id="add-to-cart-button" name="submit.add-to-cart" title="Ajouter au panier" data-hover="Sélectionnez <b>__dims__</b> à gauche<br> pour l'ajouter au panier d'achat" class="a-button-input" type="submit" value="Ajouter au panier" aria-labelledby="submit.add-to-cart-announce">
+											<span id="submit.add-to-cart-announce" class="a-button-text" aria-hidden="true"></span>
+										</span>
+									</div>
+									{# STOCK #}
+									<div class="stock">
+										<p class="card-text">
+											{% if produit.stock > 0 %}
+												<small class="dispo" style="color:rgb(21,141,60)">En stock</small>
+											{% else %}
+												<small class="dispo" style="color:rgb(228,31,31)">Indisponible</small>
+											{% endif %}
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				    {# FIN CARD #}
+		        </div>
+            </form>
+		</div>
+	</div>
+</section>
+
+
+
+{% endblock %}

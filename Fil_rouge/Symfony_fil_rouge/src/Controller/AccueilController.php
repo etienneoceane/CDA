@@ -28,8 +28,7 @@ class AccueilController extends AbstractController
      * @Route("/sousrubrique/{id}", name="sousrubrique")
      */
     public function Sousrubriques(RubriqueRepository $rub, SousRubriqueRepository $repo, $id ): Response
-    {
-        
+    {        
         $rubriques = $rub->findAll();
         $listesousrubriques=$repo->findBy(['rubrique'=>$id]);
 
@@ -54,4 +53,24 @@ class AccueilController extends AbstractController
             'home' => $rubrepo->findAll()
         ]);
     }
+
+
+    /**
+     * @Route("/details/{id}", name="details")
+     */
+
+    public function Details(RubriqueRepository $rub, SousRubriqueRepository $sousrepo, ProduitRepository $repo, $id): Response
+    {
+        $rubriques = $rub->findAll();
+        $listesousrubriques=$sousrepo->findBy(['rubrique'=>$id]);
+        $produit = $repo->findOneBy(['id'=>$id]);
+        dump($produit);
+
+        return $this->render('accueil/details.html.twig', [
+            /* $rubrique afficher les rubriques dans la navbar */
+            'home' => $rubriques,
+            'listesousrubriques'=>$listesousrubriques,
+            'produit' => $produit,
+        ]);
+    }    
 }
