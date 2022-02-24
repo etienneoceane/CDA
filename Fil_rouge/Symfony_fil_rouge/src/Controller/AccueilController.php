@@ -7,6 +7,7 @@ use App\Repository\RubriqueRepository;
 use App\Repository\SousRubriqueRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AccueilController extends AbstractController
@@ -64,7 +65,7 @@ class AccueilController extends AbstractController
         $rubriques = $rub->findAll();
         $listesousrubriques=$sousrepo->findBy(['rubrique'=>$id]);
         $produit = $repo->findOneBy(['id'=>$id]);
-        dump($produit);
+/*         dump($produit); */
 
         return $this->render('accueil/details.html.twig', [
             /* $rubrique afficher les rubriques dans la navbar */
@@ -73,4 +74,5 @@ class AccueilController extends AbstractController
             'produit' => $produit,
         ]);
     }    
+
 }
