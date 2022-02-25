@@ -15,52 +15,53 @@ class ContenirController extends AbstractController
 {
 
     /**
-     * @Route("/panier_add", name="panier_add")
+     * @Route("/panier", name="panier")
      */
-    public function panier_add(SessionInterface $session, ProduitRepository $prod, Request $request): Response
+
+    public function index(SessionInterface $session, ProduitRepository $prod, RubriqueRepository $rub)
     {
-        $panier = $session->get("panier",[]);
-        if ($request->getMethod() == 'POST') {
-            $produit = $prod->find($request->get('produit'));
-            $panier[$request->get('produit')] = [
-                "nom" => $request->get('name'),
-                "photo" => $request->get('photo'),
-                "qte" => $request->get('qte'),
-                "stock" => $produit->getStock()
+        $rubriques = $rub->findAll();
+        $panier=$session->get('panier',[]);
+        $panierAvecDonnees= [];
+        foreach ($panier as $id  => $qte)
+        {
+            $panierAvecDonnees[]=[
+                'produit'=> $prod->find($id), 
+                'quantite'=> $qte
             ];
-            $session->set("panier", $panier);
         }
-        dump($panier);
-
-        /* $referer = $request->headers->get('referer');
-        return new RedirectResponse($referer); */
-        return $this->render('accueil/details.html.twig', [
-            /* $rubrique afficher les rubriques dans la navbar */
-
+        $total=0;
+        foreach($panierAvecDonnees as $item){
+            $totalItem =$item['produit']->getPrixht() * $item['quantite'];
+            $total+= $totalItem;
+        }
+        return $this->render('contenir/index.html.twig',[
+            'home' => $rubriques,
+            'items'=>$panierAvecDonnees,
+            'total'=>$total
         ]);
     }
+
 
     /**
-     * @Route("/paniers/", name="paniers")
+     * @Route("/panier/add/{id}", name="panier_add")
      */
-    public function panier(SessionInterface $session, ProduitRepository $prod, RubriqueRepository $cat): Response
+    public function panier_add($id, SessionInterface $session)
     {
-        $panier = $session->get("panier");
-        if(!empty($panier)){
+        $panier=$session->get('panier',[]);
 
-
-        foreach ($panier as $key => $row) {
-            $produit = $prod->find($key);
-
-            $panier[$key]['prixht'] = $produit->getPrixht();
-            $panier[$key]['stock'] = $produit->getStock();
-            // $panier[$key]['total'] = $produit->getPrice()* $panier[$key]["qte"];
+        if(!empty($panier[$id]))
+        {
+            $panier[$id]++;
+        } 
+        else
+        {
+        $panier[$id]=1;
         }
-        }
-        //var_dump($panier);
-        return $this->render('paniers/index.html.twig', [
-            'panier' => $panier,
-            'menu' => $cat->findAll()
-        ]);
+
+        $session->set('panier',$panier);
+        dd($session->get('panier'));
+    
     }
+
 }
