@@ -126,3 +126,12 @@ color:rgb(46, 50, 65);
     display:inline-block;
     margin-top: auto;
 }
+
+.total{
+    font-size:1.25rem;
+    color:rgb(207, 57, 57);
+}
+
+.photoproduit{
+    width:4.5rem
+}
