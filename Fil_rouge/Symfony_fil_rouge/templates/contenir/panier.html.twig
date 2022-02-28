@@ -3,6 +3,7 @@
 {% block body %}
 {# CSS #}
 <style>
+
 input{
     width:25%;
 }
@@ -29,7 +30,6 @@ input{
                 </tr>
             </thead>
         <tbody>
-        {{dump(app.session.get('panier'))}}
         {% for item in items %}
                 <tr>
                     <td><a href="{{path('details',{id:item.produit.id})}}"><img class="photoproduit" src="/assets/src/{{item.produit.photo}}"></a></td>
