@@ -74,7 +74,7 @@
 									</li>
 									<li class="nav-item mr-2">
 										<a class="nav-link" href="{{path('panier')}}"><img src="/assets/src/picto panier.png">
-											{% if app.session.get('panier') %}
+											{% if app.session.get('panier')%}
 												{% set TotalPanier =0 %}
 												{% for key,cpte in app.session.get('panier') %}
 													{% if key matches '/^\\d+$/' %}

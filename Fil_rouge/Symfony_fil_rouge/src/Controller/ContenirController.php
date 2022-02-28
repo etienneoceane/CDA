@@ -81,17 +81,43 @@ class ContenirController extends AbstractController
      * @Route("/panier_delete/{id}", name="panier_delete")
      */
 
-    public function delete($id, SessionInterface $session)
+    public function delete($id, SessionInterface $session,Request $request)
     {
         $panier=$session->get('panier',[]);
-
-        if(!empty($panier[$id]))
+        if(!empty($panier[$id]) ) 
         {
+            
             unset($panier[$id]);
         }
+
         $session->set('panier',$panier);
 
         return $this->redirectToRoute("panier");
     }
+
+    /**
+     * @Route("/panier_update/{id}", name="panier_update")
+     */
+
+    public function update($id, SessionInterface $session,Request $request)
+    {
+        $panier=$session->get('panier',[]);
+        $quantite=$request->request->get('qte');
+        // if(!empty($panier[$id]))
+        // {
+            if($quantite>0){
+            $panier[$id] = (1* $quantite) ;
+            }
+            else{
+                unset($panier[$id]);
+            }
+        // } 
+        $session->set('panier',$panier);
+
+        return $this->redirectToRoute("panier");
+    }
+
+    
+
 
 }
