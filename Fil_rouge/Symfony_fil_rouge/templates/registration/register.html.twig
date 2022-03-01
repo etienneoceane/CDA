@@ -3,20 +3,23 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
+{# CSS #}
+<style>
+#pathconnexion{
+	color:blue;
+}
+</style>
 
 <section>
 	<div class="container bg-center">
 		{# FIL D'ARIANNE BREADCRUMB #}
-		<class="rowp-3">
+		<div class="row p-3">
 			<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
 				<ol class="breadcrumb" id="breadcrumb">
 					<li class="breadcrumb-item ">
 						<a id="arianne" href="{{'/accueil'}}">Accueil</a>
 					</li>
-					<li class="breadcrumb-item active" aria-current="page">
-						<a href=""></a>
-					</li>
-					<li class="breadcrumb-item active" aria-current="page"></li>
+					<li class="breadcrumb-item active" aria-current="page">Inscription</li>
 				</ol>
 			</nav>
 			{# ERREURS #}
@@ -24,21 +27,39 @@
 				<div class="alert alert-danger" role="alert">{{ flashError }}</div>
 			{% endfor %}
 			{# FORMULAIRE #}
-			<div class="row pt-2 pb-2">
-				<div class="col-sm-12">
-					{{ form_start(registrationForm) }}
-
-					{{ form_row(registrationForm.email) }}
-
-					{{ form_row(registrationForm.plainPassword, { label: 'Mot de passe'}) }}
-					{{ form_row(registrationForm.agreeTerms, {label:'Accepte la CGU'}) }}
-					{# SUBMIT #}
-					<button type="submit" class="btn">Register</button>
-					{{ form_end(registrationForm) }}
+			<div class="row pt-2 pb-2" style="justify-content:center">
+				<div class="col-sm-8">
+					<div class="row p-5">
+						{{ form_start(registrationForm) }}
+						<h1 class="mb-3 font-weight-normal">Inscription</h1>
+						<div class="form-row">
+							<div class="col">
+								{{ form_row(registrationForm.nom) }}
+							</div>
+							<div class="col">
+								{{ form_row(registrationForm.prenom) }}
+							</div>
+						</div>
+						{{ form_row(registrationForm.email) }}
+						{{ form_row(registrationForm.plainPassword, { label: 'Mot de passe'}) }}
+						{{ form_row(registrationForm.agreeTerms, {label:'Accepte les CGU'}) }}
+						{# SUBMIT #}
+						<div class="form-row">
+							<div class="col">
+								<button class="btn btn-lg btn-success" type="submit">Confirmer</button>
+							</div>
+						{{ form_end(registrationForm) }}
+						<div class="col text-right">
+							<p>Déjà inscrit ?
+								<a id="pathconnexion" href="{{'/login'}}">Connexion</a>
+							</p>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+
 </section>
 
 
