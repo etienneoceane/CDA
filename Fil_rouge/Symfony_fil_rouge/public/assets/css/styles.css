@@ -35,21 +35,20 @@ h2{
 #navbar1 .nav-link{
     color: white;
 }
+.prenom{
+    font-size: 75%;
+    width: auto;
+    color:white;
+}
 
-/* Couleur utilisée pour les liens de la navbar1 lorsque la souris passe dessus */
+
+/* cadre utilisée pour les liens de la navbar1 lorsque la souris passe dessus */
 #navbar1 .navbar-nav > li > a:hover,
 #navbar1 .navbar-nav > li > a:focus {
-    color: rgb(46, 50, 65);
+    border:1px solid white;
 }
 
-/* Couleur utilisée pour le lien actif de la navbar 1 (celui qui est affiché sur la page) */
-#navbar1 .navbar-nav > li > a.active, 
-#navbar1 .navbar-nav > li > a.active:hover, 
-#navbar1 .navbar-nav > li > a.active:focus {
-    text-decoration-line: underline;
-    text-decoration-style: solid;
-    color:rgb(46, 50, 65);
-}
+
 
 #navbar2{
     font-size: 1.5em;

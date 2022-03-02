@@ -43,7 +43,7 @@ class AccueilController extends AbstractController
     /**
      * @Route("/listeproduits/{id}", name="listeproduits")
      */
-    public function index(ProduitRepository $repo, $id, RubriqueRepository $rubrepo): Response
+    public function Listeproduits(ProduitRepository $repo, $id, RubriqueRepository $rubrepo): Response
     {
         $produit = $repo->findBy(['sousrubrique'=>$id]);
         
