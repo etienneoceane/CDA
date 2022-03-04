@@ -2,9 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Produit;
 use App\Repository\ProduitRepository;
+use App\Repository\CommandeRepository;
 use App\Repository\RubriqueRepository;
-use App\Repository\SousRubriqueRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -14,15 +17,14 @@ class AdminAccueilController extends AbstractController
     /**
      * @Route("/admin/accueil", name="admin_accueil")
      */
-    public function Rubriques(RubriqueRepository $rub, SousRubriqueRepository $repo): Response
-
+    public function accueil(CommandeRepository $com): Response
     {
-        $rubriques = $rub->findAll();
 
         return $this->render('admin_accueil/accueil.html.twig', [
-            /* $rubrique afficher les rubriques dans la navbar */
-            'home' => $rubriques
+            'commandes' => $com->findAll(),
         ]);
     }
+
+
 
 }

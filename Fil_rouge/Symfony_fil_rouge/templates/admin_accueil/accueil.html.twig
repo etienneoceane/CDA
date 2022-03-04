@@ -18,20 +18,28 @@
 {# CORPS DE LA PAGE #}
 <section>
 	<div class="container bg-center">
-        <div class="row pb-5" style="justify-content:center">
-	        <div class="col-sm-4 p-0 mt-3 mb-3">
-				<div class="overlay-image">
-					<a href="">
-						<div class="hover">
-							<img class="" />
-                        </div>
-                        <div class="liens">
-                            <span></span>
-                        </div>
-					</a>
-				</div>
-            </div>
-        </div>    
+        <div class="row p-3" style="justify-content:center">
+            <h1>Liste des commandes</h1>
+            {% for commande in commandes %}
+                <div class="col-12 mb-2  border border-dark">
+                    <p>Commande numero: {{ commande.id }}  </p>
+                    <p>Date de la commande: {{ commande.date|date('d-m-Y') }}<br>
+                    Client: {{ (commande.client.raison) }}<br>
+                    Adresse de livraison: {{ commande.adresselivraison}}<br>
+                    {{ commande.villelivraison }}<br>
+                    {{ commande.cplivraison }}<br>
+                    {# PROBLEME RETOURNE PAS DE COMMANDE ALORS QUIL Y EN A UNE #}
+                    {% set total = 0 %}
+                    {% set quantite = 0 %}
+                    {% for row in commande.contenir %}
+                    {%  set total = (total + row.prix_vente * row.qtite_commande)*0.05 +(total + row.prix_vente * row.qtite_commande) %}
+                    {%  set quantite = quantite + row.qtite_commande %}
+                    {% endfor %}
+                    <p>Nombre d'articles : {{ quantite }}</p>
+                    <p>Pour un total de <span class="text-success"> {{ total }} €</span> </p>
+                </div>
+            {% endfor %}
+        </div>
 	</div>
 </section>
 
