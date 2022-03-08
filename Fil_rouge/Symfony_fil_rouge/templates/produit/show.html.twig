@@ -44,14 +44,10 @@
 		</div>
 		<div class="row p-3">
 			<div class="col-md-3">
-				<button class="btn-block btn btn-danger font-weight-bold">
-					<a class="text-light" href="{{ path('produit_index') }}">Retour</a>
-				</button>
+					<a class="btn-block btn btn-danger font-weight-bold text-light" href="{{ path('produit_index') }}"role="button">Retour</a>
 			</div>
 			<div class="col-md-3">
-				<button class="btn-block btn btn-primary text-light font-weight-bold">
-					<a class="text-light" href="{{ path('produit_edit', {'id': produit.id}) }}">Modifier</a>
-				</button>
+					<a class="btn-block btn btn-primary text-light font-weight-bold text-light" href="{{ path('produit_edit', {'id': produit.id}) }}"role="button">Modifier</a>
 			</div>
 			{# <div class="col-md-3">
 				<button class="btn-block btn btn-danger text-light font-weight-bold">

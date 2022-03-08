@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CommandeRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -89,9 +91,14 @@ class Commande
     private $livraison;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Contenir::class, inversedBy="commandes")
+     * @ORM\OneToMany(targetEntity=Contenir::class, mappedBy="commande")
      */
-    private $contenir;
+    private $contenirs;
+
+    public function __construct()
+    {
+        $this->contenirs = new ArrayCollection();
+    }
 
 
 
@@ -268,14 +275,32 @@ class Commande
         return $this;
     }
 
-    public function getContenir(): ?Contenir
+    /**
+     * @return Collection|Contenir[]
+     */
+    public function getContenirs(): Collection
     {
-        return $this->contenir;
+        return $this->contenirs;
     }
 
-    public function setContenir(?Contenir $contenir): self
+    public function addContenir(Contenir $contenir): self
     {
-        $this->contenir = $contenir;
+        if (!$this->contenirs->contains($contenir)) {
+            $this->contenirs[] = $contenir;
+            $contenir->setCommande($this);
+        }
+
+        return $this;
+    }
+
+    public function removeContenir(Contenir $contenir): self
+    {
+        if ($this->contenirs->removeElement($contenir)) {
+            // set the owning side to null (unless already changed)
+            if ($contenir->getCommande() === $this) {
+                $contenir->setCommande(null);
+            }
+        }
 
         return $this;
     }

@@ -30,14 +30,15 @@ class Contenir
     private $prix_vente;
 
     /**
-     * @ORM\OneToMany(targetEntity=Commande::class, mappedBy="contenir")
-     */
-    private $commandes;
-
-    /**
      * @ORM\ManyToOne(targetEntity=Produit::class, inversedBy="contenirs")
      */
     private $produits;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Commande::class, inversedBy="contenirs")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $commande;
 
     public function __construct()
     {
@@ -74,38 +75,6 @@ class Contenir
         return $this;
     }
 
-
-
-    /**
-     * @return Collection|Commande[]
-     */
-    public function getCommandes(): Collection
-    {
-        return $this->commandes;
-    }
-
-    public function addCommande(Commande $commande): self
-    {
-        if (!$this->commandes->contains($commande)) {
-            $this->commandes[] = $commande;
-            $commande->setContenir($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCommande(Commande $commande): self
-    {
-        if ($this->commandes->removeElement($commande)) {
-            // set the owning side to null (unless already changed)
-            if ($commande->getContenir() === $this) {
-                $commande->setContenir(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function getProduits(): ?Produit
     {
         return $this->produits;
@@ -114,6 +83,18 @@ class Contenir
     public function setProduits(?Produit $produits): self
     {
         $this->produits = $produits;
+
+        return $this;
+    }
+
+    public function getCommande(): ?Commande
+    {
+        return $this->commande;
+    }
+
+    public function setCommande(?Commande $commande): self
+    {
+        $this->commande = $commande;
 
         return $this;
     }

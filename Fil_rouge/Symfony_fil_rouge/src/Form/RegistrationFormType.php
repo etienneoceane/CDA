@@ -42,7 +42,7 @@ class RegistrationFormType extends AbstractType
                     new NotBlank([
                         'message' => 'Entrez un mot de passe ',
                     ]),
-                    new Regex(['pattern'=>'/(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[-+!*$@%_])([-+!*$@%_\w]{8,})$/','match'=>true, 'message'=>'Votre mot de passe doit comporter au minimum 8 caractères dont 1 majuscule et 1 symbole']),
+                    new Regex(['pattern'=>'/(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[-+!*$@%_])([-+!*$@%_\w]{6,})$/','match'=>true, 'message'=>'Votre mot de passe doit comporter au minimum 8 caractères dont 1 majuscule et 1 symbole']),
                     ],
             ])
         ;

@@ -1,13 +1,42 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin.html.twig' %}
 
 {% block title %}Edit Produit{% endblock %}
 
 {% block body %}
-    <h1>Edit Produit</h1>
-
-    {{ include('produit/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('produit_index') }}">back to list</a>
-
-    {{ include('produit/_delete_form.html.twig') }}
+<style>
+.img-fluid{
+    width:65%;
+}
+</style>
+<section>
+	<div class="container bg-center">
+		<div class="row pb-3 pt-4" style="justify-content:center">
+			<div class="col-sm-7">
+				<div class="row">
+                    <div class="col-8">
+                        <h1>{{produit.nom}}</h1>
+                    </div>
+                    <div class="col-4">
+                        <img src="/assets/src/{{ produit.photo }}" class="img-fluid">
+                    </div>
+                    <div class="row pt-4">
+                        {{ include('produit/_form.html.twig', {'button_label': 'Valider'}) }}
+                        {# A L'INTERIEUR DU INCLUDE produit/_form
+                        <div class="row">
+                            <div class="col-3">
+                                <button class="btn-block btn btn-success font-weight-bold text-light">{{ button_label|default('Save') }}</button>
+                            </div> #}
+                            <div class="col-3 pt-3">
+                                <a class="btn-block btn btn-secondary font-weight-bold text-light" href="{{ path('produit_index') }}">Retour</a>
+                            </div>
+                            <div class="col-3 pt-3">
+                                {{ include('produit/_delete_form.html.twig') }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>        
 {% endblock %}

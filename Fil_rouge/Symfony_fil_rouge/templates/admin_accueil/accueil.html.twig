@@ -19,26 +19,46 @@
 <section>
 	<div class="container bg-center">
         <div class="row p-3" style="justify-content:center">
-            <h1>Liste des commandes</h1>
-            {% for commande in commandes %}
-                <div class="col-12 mb-2  border border-dark">
-                    <p>Commande numero: {{ commande.id }}  </p>
-                    <p>Date de la commande: {{ commande.date|date('d-m-Y') }}<br>
-                    Client: {{ (commande.client.raison) }}<br>
-                    Adresse de livraison: {{ commande.adresselivraison}}<br>
-                    {{ commande.villelivraison }}<br>
-                    {{ commande.cplivraison }}<br>
-                    {# PROBLEME RETOURNE PAS DE COMMANDE ALORS QUIL Y EN A UNE #}
-                    {% set total = 0 %}
-                    {% set quantite = 0 %}
-                    {% for row in commande.contenir %}
-                    {%  set total = (total + row.prix_vente * row.qtite_commande)*0.05 +(total + row.prix_vente * row.qtite_commande) %}
-                    {%  set quantite = quantite + row.qtite_commande %}
+            <h1 class="mb-4">Liste des commandes</h1>
+            <table class="table">
+                <thead class="">
+                    <tr>
+                        <th>N°</th>
+                        <th>Commande passée le</th>
+                        <th>Client</th>
+                        <th>Adresse</th>
+                        <th>Ville</th>
+                        <th>CP</th>
+                        <th>Nb d'articles</th>
+                        <th>HT</th>
+                        <th>TTC</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for commande in commandes %}
+                        <tr>
+                            <td>{{ commande.id }}</td>
+                            <td>{{ commande.date|date('d-m-Y') }}</td>
+                            <td>{{ (commande.client.raison) }}</td>
+                            <td>{{ commande.adresselivraison}}</td>
+                            <td>{{ commande.villelivraison }}</td>
+                            <td>{{ commande.cplivraison }}</td>
+                            {# PROBLEME RETOURNE PAS DE COMMANDE ALORS QUIL Y EN A UNE #}
+                            {% set total = 0 %}
+                            {% set quantite = 0 %}
+                            {% set tva = 0 %}
+                            {% for row in commande.contenirs %}
+                            {%  set tva = (total + row.prixvente * row.qtitecommande)*0.05 %}
+                            {% set total = (total + row.prixvente * row.qtitecommande) %}
+                            {%  set quantite = quantite + row.qtitecommande %}
+                            {% endfor %}
+                            <td>{{ quantite }}</td>
+                            <td>{{ total }} €</td>
+                            <td class="text-danger">{{ total + tva }} €</td>
+                        </tr>
                     {% endfor %}
-                    <p>Nombre d'articles : {{ quantite }}</p>
-                    <p>Pour un total de <span class="text-success"> {{ total }} €</span> </p>
-                </div>
-            {% endfor %}
+                </tbody>
+            </table>
         </div>
 	</div>
 </section>

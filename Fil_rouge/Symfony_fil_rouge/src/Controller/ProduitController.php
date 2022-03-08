@@ -39,12 +39,21 @@ class ProduitController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($produit);
-            $entityManager->flush();
+            $aMimeTypes = array("image/gif", "image/jpeg", "image/jpg", "image/png", "image/x-png", "image/tiff");
+            //   $img = ['products']['photo'];
+            $objfichier = $request->files->get('produit');
+            $fichier = $objfichier['photo'];
 
-            return $this->redirectToRoute('produit_index', [], Response::HTTP_SEE_OTHER);
+            if (in_array($fichier->getClientmimeType(), $aMimeTypes)) {
+                if ($fichier->move('assets/src/', $fichier->getClientOriginalName())) {
+                    $produit->setPhoto($fichier->getClientOriginalName());
+                    $entityManager->persist($produit);
+                    $entityManager->flush();
+
+                    return $this->redirectToRoute('produit_index', [], Response::HTTP_SEE_OTHER);
+                }
+            }
         }
-
         return $this->renderForm('produit/new.html.twig', [
             'produit' => $produit,
             'form' => $form,
@@ -66,20 +75,20 @@ class ProduitController extends AbstractController
     /**
      * @Route("/{id}/edit", name="produit_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, Produit $produit, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request, Produit $id, EntityManagerInterface $entityManager, RubriqueRepository $rub): Response
     {
-        $form = $this->createForm(ProduitType::class, $produit);
+        $form = $this->createForm(ProduitType::class, $id);
         $form->handleRequest($request);
-
+        $rubriques = $rub->findAll();
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
             return $this->redirectToRoute('produit_index', [], Response::HTTP_SEE_OTHER);
         }
-
         return $this->renderForm('produit/edit.html.twig', [
-            'produit' => $produit,
+            'produit' => $id,
             'form' => $form,
+            'home' => $rubriques
         ]);
     }
 

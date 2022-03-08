@@ -30,7 +30,7 @@ class SousRubrique
     private $description;
 
     /**
-     * @ORM\ManyToOne(targetEntity=rubrique::class, inversedBy="sousRubriques")
+     * @ORM\ManyToOne(targetEntity=Rubrique::class, inversedBy="sousRubriques")
      * @ORM\JoinColumn(nullable=false)
      */
     private $rubrique;
@@ -131,5 +131,9 @@ class SousRubrique
         $this->photos = $photos;
 
         return $this;
+    }
+    public function __toString()
+    {
+        return $this->nom;
     }
 }
