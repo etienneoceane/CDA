@@ -35,13 +35,14 @@ class ContenirController extends AbstractController
         $total=0;
         foreach($panierAvecDonnees as $item){
             $totalItem =$item['produit']->getPrixht() * $item['quantite'];
-            $total+= $totalItem+($totalItem*0.05);
+            $total+= $totalItem;
         }
         return $this->render('contenir/panier.html.twig',[
             'home' => $rubriques,
             'items'=>$panierAvecDonnees,
             'total'=>$total,
-            'produit'=>$produit
+            'produit'=>$produit,
+            'panier'=>$panier
         ]);
     }
 
