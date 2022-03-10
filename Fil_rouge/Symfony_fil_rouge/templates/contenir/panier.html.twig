@@ -35,11 +35,11 @@ input{
                             <td>
                                 <form action="{{ path('panier_update',{'id':item.produit.id}) }}" method="post">
                                     {# <label for="quantite">Qté</label> #}
-                                    <input type="number" id="qte" name="qte" min="0" max="10" onchange="this.form.submit()"  value="{{item.quantite}}">
+                                    <input type="number" id="qte" name="qte" min="0" max="1000" onchange="this.form.submit()"  value="{{item.quantite}}">
                                 </form>
                             </td>
-                            <td>{{item.produit.prixht}}€</td>
-                            <td>{{item.produit.prixht * item.quantite}} €</td>
+                            <td>{{(item.produit.prixht)|number_format(2, '.', ' ')}}€</td>
+                            <td>{{(item.produit.prixht * item.quantite)|number_format(2, '.', ' ')}} €</td>
                             <td>
                                 
                             </td>
@@ -54,15 +54,15 @@ input{
                 <tfoot>
                     <tr>
                         <td colspan="4"class="text-right">HT: </td>
-                        <td>{{total}} €</td>
+                        <td>{{total|number_format(2, '.', ' ')}} €</td>
                     </tr>
                     <tr>
                         <td colspan="4"class="text-right">TVA: </td>
-                        <td>{{total * 0.05}}€</td>
+                        <td>{{(total * 0.05)|number_format(2, '.', ' ')}}€</td>
                     </tr>
                     <tr>
                         <td colspan="4" class="text-right total">Total TTC: </td>
-                        <td class="total">{{total + total * 0.05}} €</td>
+                        <td class="total">{{(total + total * 0.05)|number_format(2, '.', ' ')}} €</td>
                         <td></td>
                     </tr>
                     <tr >
