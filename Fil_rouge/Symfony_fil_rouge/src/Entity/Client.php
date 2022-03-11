@@ -56,10 +56,6 @@ class Client
      */
     private $tel;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $mail;
 
     /**
      * @ORM\OneToMany(targetEntity=Commercial::class, mappedBy="client")
@@ -71,10 +67,18 @@ class Client
      */
     private $commandes;
 
+    /**
+     * @ORM\OneToMany(targetEntity=User::class, mappedBy="client", orphanRemoval=true)
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $users;
+
+    
     public function __construct()
     {
         $this->commercial = new ArrayCollection();
         $this->commandes = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -166,17 +170,6 @@ class Client
         return $this;
     }
 
-    public function getMail(): ?string
-    {
-        return $this->mail;
-    }
-
-    public function setMail(?string $mail): self
-    {
-        $this->mail = $mail;
-
-        return $this;
-    }
 
     /**
      * @return Collection|Commercial[]
@@ -232,6 +225,36 @@ class Client
             // set the owning side to null (unless already changed)
             if ($commande->getClient() === $this) {
                 $commande->setClient(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+            $user->setClient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->users->removeElement($user)) {
+            // set the owning side to null (unless already changed)
+            if ($user->getClient() === $this) {
+                $user->setClient(null);
             }
         }
 

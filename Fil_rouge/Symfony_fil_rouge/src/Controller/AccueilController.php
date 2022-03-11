@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\ClientRepository;
 use App\Repository\ProduitRepository;
 use App\Repository\RubriqueRepository;
 use App\Repository\SousRubriqueRepository;
@@ -15,7 +16,7 @@ class AccueilController extends AbstractController
     /**
      * @Route("/accueil", name="accueil")
      */
-    public function Rubriques(RubriqueRepository $rub, SousRubriqueRepository $repo): Response
+    public function Rubriques(RubriqueRepository $rub, SousRubriqueRepository $repo, ClientRepository $cli): Response
     {
         $rubriques = $rub->findAll();
 
@@ -74,5 +75,19 @@ class AccueilController extends AbstractController
             'produit' => $produit,
         ]);
     }    
+
+    /**
+     * @Route("/profil", name="profil_client")
+     */
+    public function ProfilClient( RubriqueRepository $rub): Response
+    {
+        $rubriques = $rub->findAll();
+
+
+        return $this->render('accueil/profil.html.twig', [
+            'home' => $rubriques,
+
+        ]);
+    }
 
 }

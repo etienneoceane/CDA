@@ -3,18 +3,19 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Form\RegistrationFormType;
-use App\Repository\RubriqueRepository;
-use App\Repository\UserRepository;
+use App\Entity\Client;
 use App\Security\EmailVerifier;
+use App\Form\RegistrationFormType;
+use App\Repository\UserRepository;
+use Symfony\Component\Mime\Address;
+use App\Repository\RubriqueRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Mime\Address;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 
 class RegistrationController extends AbstractController
@@ -31,12 +32,24 @@ class RegistrationController extends AbstractController
      */
     public function register(Request $request,RubriqueRepository $rub, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
-        $user = new User();
-        $form = $this->createForm(RegistrationFormType::class, $user);
+        $form = $this->createForm(RegistrationFormType::class);
         $form->handleRequest($request);
         $rubriques = $rub->findAll();
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
+            $nom = $form->get('nom')->getData();
+            $prenom = $form->get('prenom')->getData();
+            $email = $form->get('email')->getData();
+
+            $user = new User();
+            $user->setEmail($email);
+
+            $client = new Client();
+            $client->setNom($nom);
+            $client->setPrenom($prenom);
+
+            $user->setClient($client);
+
             // encode the plain password
             $user->setPassword(
             $userPasswordHasher->hashPassword(
@@ -46,6 +59,7 @@ class RegistrationController extends AbstractController
             );
 
             $entityManager->persist($user);
+            $entityManager->persist($client);
             $entityManager->flush();
 
             // generate a signed url and email it to the user
