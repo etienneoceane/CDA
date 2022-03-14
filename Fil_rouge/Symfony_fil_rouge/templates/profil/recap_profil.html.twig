@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} app.user.client {% endblock %}
+
+{% block body %}
+
+<section>
+	<div class="container bg-center">
+		<h1 id="titre">Votre profil</h1>
+		<div class="row ">
+			<div class="col-6" id="infos-client">
+				<p class="adresse">Adresse de facturation</p>
+				<input class="form-control" type="text" placeholder="{{ app.user.client.nom }}" aria-label="Disabled input example" disabled>
+				<input class="form-control" type="text" placeholder="{{ app.user.client.prenom }}" aria-label="Disabled input example" disabled>
+				<input class="form-control" type="text" placeholder="{{ app.user.client.adresse }}" aria-label="Disabled input example" disabled>
+				<input class="form-control" type="text" placeholder="{{ app.user.client.ville }}" aria-label="Disabled input example" disabled>
+				<input class="form-control" type="text" placeholder="{{ app.user.client.cp }}" aria-label="Disabled input example" disabled>
+				<input class="form-control" type="text" placeholder="{{ app.user.client.tel }}" aria-label="Disabled input example" disabled>
+			</div>
+			<div class="col-6" id="infos-client">
+				<p class="adresse">Adresse de livraison</p>
+				<input class="form-control" type="text" placeholder="{{ app.user.client.nom }}" aria-label="Disabled input example" disabled>
+				<input class="form-control" type="text" placeholder="{{ app.user.client.prenom }}" aria-label="Disabled input example" disabled>
+				<input class="form-control" type="text" placeholder="{{ app.user.client.adresse }}" aria-label="Disabled input example" disabled>
+				<input class="form-control" type="text" placeholder="{{ app.user.client.ville }}" aria-label="Disabled input example" disabled>
+				<input class="form-control" type="text" placeholder="{{ app.user.client.cp }}" aria-label="Disabled input example" disabled>
+				<input class="form-control" type="text" placeholder="{{ app.user.client.tel }}" aria-label="Disabled input example" disabled>
+			</div>
+		</div>
+		<div class="row justify-content-between">
+			<div class="col-12 mt-5 mb-2">
+				<button type="submit" class="btn btn-warning">
+					<a class="valider font-weight-bold text-light" href="{{ path('profil_client') }}">Modifier mes informations</a>
+				</button>
+				<button type="submit" class="btn btn-success">
+					<a class="valider font-weight-bold text-light" href="#">Valider mes informations et passer ma commande</a>
+				</button>
+			</div>
+		</div>
+    </div>
+</section>
+
+
+{% endblock %}

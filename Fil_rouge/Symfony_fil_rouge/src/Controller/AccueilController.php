@@ -84,10 +84,24 @@ class AccueilController extends AbstractController
         $rubriques = $rub->findAll();
 
 
-        return $this->render('accueil/profil.html.twig', [
+        return $this->render('profil/profil.html.twig', [
             'home' => $rubriques,
 
         ]);
     }
 
+
+        /**
+     * @Route("/recap_profil", name="recap_profil")
+     */
+    public function ProfilRecapClient( RubriqueRepository $rub): Response
+    {
+        $rubriques = $rub->findAll();
+
+
+        return $this->render('profil/recap_profil.html.twig', [
+            'home' => $rubriques,
+
+        ]);
+    }
 }

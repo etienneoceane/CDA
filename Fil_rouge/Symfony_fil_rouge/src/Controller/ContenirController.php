@@ -120,19 +120,19 @@ class ContenirController extends AbstractController
     }
 
     
-    /**
-     * @Route("/informations/client", name="informations_client")
-     */
-    public function infos_client(ClientRepository $client): Response
-    {
-        if (!$client->findOneBy(['users' => $this->getUser()])) {
-            $this->addFlash('error_profil', 'Veuillez entrer vos informations');
-            return $this->redirectToRoute('profil_client');
-        }
+    // /**
+    //  * @Route("/informations/client", name="informations_client")
+    //  */
+    // public function infos_client(ClientRepository $client): Response
+    // {
+    //     if (!$client->findOneBy(['users' => $this->getUser()])) {
+    //         $this->addFlash('error_profil', 'Veuillez entrer vos informations');
+    //         return $this->redirectToRoute('profil_client');
+    //     }
 
-        return $this->render('informations_client/index.html.twig', [
-            'profil' => $client->findOneBy(['users' => $this->getUser()]),
-        ]);
-    }
+    //     return $this->render('informations_client/index.html.twig', [
+    //         'profil' => $client->findOneBy(['users' => $this->getUser()]),
+    //     ]);
+    // }
 
 }

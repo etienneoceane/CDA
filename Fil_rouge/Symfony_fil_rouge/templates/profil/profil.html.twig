@@ -4,17 +4,11 @@
 
 {% block body %}
 
-<div class="row" id="ariane">
-    <ul class="crumb">
-        <li><a href="#">Accueil</a></li>
-    </ul>
-</div>
-
 <section>
 	<div class="container bg-center">
 		<div class="row pb-3 pt-4" style="justify-content:center">
             <div class="col-sm-7">
-                <form method="post" action="#">
+                <form method="post" action="{{ path('post_client') }}">
 
                     <h1 id="titre"> Complêtez votre profil </h1>
 
@@ -24,7 +18,7 @@
                             {% for flash_error in app.flashes('connexion') %}
                             <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
                             {% endfor %}
-
+                            
                             <div class="form-group">
                                 <label for="nom">Nom :</label>
                                 <input required type="text" value="{{app.user.client.nom}}" class="form-control" id="nom" name="nom">
@@ -37,17 +31,17 @@
                             <br>
                             <div class="form-group">
                                 <label for="adresse">Adresse :</label>
-                                <input required type="text" value="" class="form-control" id="adresse" name="adresse">
+                                <input required type="text" value="{{app.user.client.adresse}}" class="form-control" id="adresse" name="adresse">
                             </div>
                             <br>
                             <div class="form-group">
                                 <label for="cp">Code postal :</label>
-                                <input required type="text" value="" class="form-control" id="cp" name="cp">
+                                <input required type="text" value="{{app.user.client.cp}}" class="form-control" id="cp" name="cp">
                             </div>
                             <br>
                             <div class="form-group">
                                 <label for="ville">Ville :</label>
-                                <input required type="text" value="" class="form-control" id="ville" name="ville">
+                                <input required type="text" value="{{app.user.client.ville}}" class="form-control" id="ville" name="ville">
                             </div>
                             <br>
                             <label for="type">Vous êtes :</label> <br>
@@ -56,34 +50,27 @@
                                 <label class="form-check-label" for="radio1">Un particulier</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="type" id="type" value="pro">
+                                <input class="form-check-input" type="radio" name="type" id="type" value="pro" onclick="myFunction()">
                                 <label class="form-check-label" for="radio2">Un professionnel</label>
                             </div>
                             <br><br>
+                            <div class="form-group" id="raison" style="display:none">
+                                <label for="Raison">Raison sociale :</label>
+                                <input type="text" value="" class="form-control" name="raison">
+                            </div>
+                            <br>
                             <div class="form-group">
                                 <label for="telephone">Téléphone :</label>
-                                <input required type="tel" value="" class="form-control" id="telephone" name="telephone">
+                                <input required type="tel" value="{{app.user.client.tel}}" class="form-control" id="telephone" name="tel">
                             </div>
 
 
                             <input type="hidden" name="_csrf_token" value="">
                         </div>
                     </div>
-
-                    {#
-                    Uncomment this section and add a remember_me option below your firewall to activate remember me
-                    functionality.
-                    See https://symfony.com/doc/current/security/remember_me.html
-                    <div class="checkbox mb-3">
-                        <label>
-                            <input type="checkbox" name="_remember_me"> Remember me
-                        </label>
-                    </div>
-                    #}
-
                     <div class="row">
                         <div class="col-12 bouton-connexion">
-                            <button type="submit" class="btn btn-dark">
+                            <button type="submit" class="btn btn-success font-weight-bold text-light">
                                 Valider mes informations
                             </button>
                         </div>
@@ -93,4 +80,14 @@
         </div>
     </div>
 </section>
+<script>
+    function myFunction()
+    {
+    divInfo = document.getElementById('raison');
+    if (divInfo.style.display == 'none')
+    divInfo.style.display = 'block';
+    else
+    divInfo.style.display = 'none';
+    }
+</script>
 {% endblock %}

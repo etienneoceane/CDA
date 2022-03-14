@@ -2,10 +2,15 @@
 
 namespace App\Controller;
 
+use App\Entity\Client;
+use App\Repository\ClientRepository;
 use App\Repository\RubriqueRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class UserController extends AbstractController
@@ -39,5 +44,41 @@ class UserController extends AbstractController
     public function logout(): Response
     {
         return $this->redirectToRoute('accueil');
+    }
+
+
+    /**
+     * @Route("/profil/post", name="post_client")
+     */
+    public function AjoutClient(ClientRepository $client, UserRepository $user, EntityManagerInterface $manager, Request $request)
+    {  
+            $iduser=$user->find($this->getUser())->getClient()->getId();
+            $profil=$client->findByUser($iduser);
+            
+        
+            // $profil = $client->findOneBy($user => $this->getUser());
+        if ($request->getMethod() == 'POST') {
+            $nom = $request->get('nom');
+            $raison =$request->get('raison');
+            $prenom = $request->get('prenom');
+            $adresse = $request->get('adresse');
+            $ville = $request->get('ville');
+            $cp = $request->get('cp');
+            $telephone = $request->get('tel');
+            
+
+            $profil->setNom($nom);
+            $profil->setPrenom($prenom);
+            $profil->setRaison($raison);
+            $profil->setAdresse($adresse);
+            $profil->setVille($ville);
+            $profil->setCp($cp);
+            $profil->setTel($telephone);
+
+            $manager->persist($profil);
+            $manager->flush();
+
+        }
+        return $this->redirectToRoute('profil_client');
     }
 }

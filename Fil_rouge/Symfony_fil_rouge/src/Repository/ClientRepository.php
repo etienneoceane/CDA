@@ -22,19 +22,16 @@ class ClientRepository extends ServiceEntityRepository
     // /**
     //  * @return Client[] Returns an array of Client objects
     //  */
-    /*
-    public function findByExampleField($value)
+
+    public function findByUser($user)
     {
         return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
+            ->andWhere('c.id = :val')
+            ->setParameter('val', $user)
             ->getQuery()
-            ->getResult()
+            ->getOneOrNullResult()
         ;
     }
-    */
 
     /*
     public function findOneBySomeField($value): ?Client
