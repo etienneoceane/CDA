@@ -6,8 +6,8 @@
 
 <section>
 	<div class="container bg-center">
-		<h1 id="titre">Votre profil</h1>
-		<div class="row ">
+		<h1 id="titre" class=" pt-3 pl-5">Votre profil</h1>
+		<div class="row mr-5 ml-5 ">
 			<div class="col-6" id="infos-client">
 				<p class="adresse">Adresse de facturation</p>
 				<input class="form-control" type="text" placeholder="{{ app.user.client.nom }}" aria-label="Disabled input example" disabled>
@@ -33,7 +33,7 @@
 					<a class="valider font-weight-bold text-light" href="{{ path('profil_client') }}">Modifier mes informations</a>
 				</button>
 				<button type="submit" class="btn btn-success">
-					<a class="valider font-weight-bold text-light" href="#">Valider mes informations et passer ma commande</a>
+					<a class="valider font-weight-bold text-light" href="{{ path('panier_valider') }}">Valider mes informations et passer ma commande</a>
 				</button>
 			</div>
 		</div>

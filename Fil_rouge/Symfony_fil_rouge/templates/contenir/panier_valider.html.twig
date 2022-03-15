@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Félicitations pour votre commande !{% endblock %}
+
+{% block body %}
+
+<style>
+.image{
+width:55%;
+text-align: center;
+display: table-cell;
+vertical-align: middle;
+}
+</style>
+
+<section>
+	<div class="container bg-center">
+		<div class="row pb-3 pt-4" style="justify-content:center">
+			<div class="image p-5">
+				<img class="img-fluid" src='/assets/src/felicitation.jpeg' alt="felicitations" id="felicitations-image">
+			</div>
+		</div>
+		<div>
+            <div class="p-5 text-center" id="felicitations">
+				<h1 class="message">
+					Votre commande a bien été enregistrée, merci !
+				</h1>
+			</div>
+		</div>
+		<div>
+			<div class="p-5" id="bouton-valide">
+				<button type="button" class="btn btn-warning ">
+					<a class="valider text-light" href="{{ path('accueil') }}">Retour à l'accueil</a>
+				</button>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+{% endblock %}

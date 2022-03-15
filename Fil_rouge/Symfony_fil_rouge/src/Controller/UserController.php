@@ -50,11 +50,12 @@ class UserController extends AbstractController
     /**
      * @Route("/profil/post", name="post_client")
      */
-    public function AjoutClient(ClientRepository $client, UserRepository $user, EntityManagerInterface $manager, Request $request)
+    public function AjoutClient(ClientRepository $client, RubriqueRepository $rub, UserRepository $user, EntityManagerInterface $manager, Request $request)
     {  
-            $iduser=$user->find($this->getUser())->getClient()->getId();
-            $profil=$client->findByUser($iduser);
-            
+        $rubriques = $rub->findAll();
+        $iduser=$user->find($this->getUser())->getClient()->getId();
+        $profil=$client->findByUser($iduser);
+        
         
             // $profil = $client->findOneBy($user => $this->getUser());
         if ($request->getMethod() == 'POST') {
@@ -77,8 +78,10 @@ class UserController extends AbstractController
 
             $manager->persist($profil);
             $manager->flush();
-
+        
         }
-        return $this->redirectToRoute('profil_client');
+        return $this->render('profil/recap_profil.html.twig', [
+            'home' => $rubriques,
+        ]);
     }
 }
