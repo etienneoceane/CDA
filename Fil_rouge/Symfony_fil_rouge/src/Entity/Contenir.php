@@ -25,7 +25,7 @@ class Contenir
     private $qtite_commande;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="decimal", precision=10, scale=2,  nullable=true)
      */
     private $prix_vente;
 
@@ -63,12 +63,12 @@ class Contenir
         return $this;
     }
 
-    public function getPrixVente(): ?int
+    public function getPrixVente(): ?string
     {
         return $this->prix_vente;
     }
 
-    public function setPrixVente(?int $prix_vente): self
+    public function setPrixVente(?string $prix_vente): self
     {
         $this->prix_vente = $prix_vente;
 

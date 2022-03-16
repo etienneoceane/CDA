@@ -126,7 +126,7 @@ class ContenirController extends AbstractController
     /**
      * @Route("/panier_valider", name="panier_valider")
      */
-    public function ValidationCommande(ClientRepository $client, RubriqueRepository $rub, UserRepository $user, EntityManagerInterface $manager, SessionInterface $session, ProduitRepository $prod): Response
+    public function ValidationCommande(ClientRepository $client, RubriqueRepository $rub, UserRepository $user, EntityManagerInterface $manager, SessionInterface $session, ProduitRepository $prod, Request $request): Response
     {
 
         $rubriques = $rub->findAll();
@@ -149,24 +149,26 @@ class ContenirController extends AbstractController
 
         $manager->persist($commande);
         $manager->flush();
-
+        $total=0;
         foreach ($panier as $key => $value) {
             $contenir = new Contenir();
 
             $produit = $prod->find($key);
-$prixht=$produit->getPrixht();
-$tva=0.5;
+            $quantite=$value;
+            $prixht=$produit->getPrixht()* $quantite;
+            $total += $prixht;
+            $pttc=$prixht+($prixht * 0.05);
             $contenir->setCommande($commande);
-            $contenir->setPrixVente($prixht+$tva);
+            $contenir->setPrixVente($pttc);
             $contenir->setQtiteCommande($value);
             $contenir->setProduits($produit);
-            $commande->setPrixTot(($contenir->getPrixVente()));
-
+            // BESOIN D'ADDITIONNER TOUS LES PRIX DE VENTE DE CONTENIR PAS QUE LE DERNIER
             $manager->persist($contenir);
-            $manager->persist($commande);
             $manager->flush();
         }
-
+        $commande->setPrixTot(($contenir->getPrixVente()));
+        dd($contenir->getPrixVente($commande));
+        $manager->persist($commande);
         $manager->flush();
 
         $session->set('panier', []);
@@ -185,10 +187,6 @@ $tva=0.5;
         $iduser=$user->find($this->getUser())->getClient()->getId();
         $profil=$client->findByUser($iduser);
 
-        if (!$profil) {
-            $this->addFlash('error_profil', 'Veuillez entrer vos informations');
-            return $this->redirectToRoute('profil_client');
-        }
 
         return $this->render('profil/recap_profil.html.twig', [
             'profil' => $profil,

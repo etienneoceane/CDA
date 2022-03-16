@@ -30,7 +30,7 @@ class Commande
     private $reduc;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="decimal", precision=10, scale=2,  nullable=true)
      */
     private $prix_tot;
 
@@ -131,12 +131,12 @@ class Commande
         return $this;
     }
 
-    public function getPrixTot(): ?int
+    public function getPrixTot(): ?string
     {
         return $this->prix_tot;
     }
 
-    public function setPrixTot(?int $prix_tot): self
+    public function setPrixTot(?string $prix_tot): self
     {
         $this->prix_tot = $prix_tot;
 
