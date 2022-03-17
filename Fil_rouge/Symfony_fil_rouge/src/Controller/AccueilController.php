@@ -66,7 +66,7 @@ class AccueilController extends AbstractController
         $rubriques = $rub->findAll();
         $listesousrubriques=$sousrepo->findBy(['rubrique'=>$id]);
         $produit = $repo->findOneBy(['id'=>$id]);
-/*         dump($produit); */
+
 
         return $this->render('accueil/details.html.twig', [
             /* $rubrique afficher les rubriques dans la navbar */

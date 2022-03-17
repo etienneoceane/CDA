@@ -155,19 +155,19 @@ class ContenirController extends AbstractController
 
             $produit = $prod->find($key);
             $quantite=$value;
-            $prixht=$produit->getPrixht()* $quantite;
-            $total += $prixht;
-            $pttc=$prixht+($prixht * 0.05);
+            $prixht=$produit->getPrixht();
+            $total+= $prixht * $quantite;
+            $pttc=$total+($total * 0.05);
             $contenir->setCommande($commande);
-            $contenir->setPrixVente($pttc);
+            $contenir->setPrixVente($prixht);
             $contenir->setQtiteCommande($value);
             $contenir->setProduits($produit);
             // BESOIN D'ADDITIONNER TOUS LES PRIX DE VENTE DE CONTENIR PAS QUE LE DERNIER
             $manager->persist($contenir);
             $manager->flush();
         }
-        $commande->setPrixTot(($contenir->getPrixVente()));
-        dd($contenir->getPrixVente($commande));
+        $commande->setPrixTot($pttc);
+        // dd($pttc);
         $manager->persist($commande);
         $manager->flush();
 

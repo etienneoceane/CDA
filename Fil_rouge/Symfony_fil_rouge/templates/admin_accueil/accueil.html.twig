@@ -29,7 +29,7 @@
                         <th>Adresse</th>
                         <th>Ville</th>
                         <th>CP</th>
-                        <th>Nb d'articles</th>
+                        <th>Quantité</th>
                         <th>HT</th>
                         <th>TTC</th>
                     </tr>
@@ -48,13 +48,13 @@
                             {% set quantite = 0 %}
                             {% set tva = 0 %}
                             {% for row in commande.contenirs %}
-                            {%  set tva = (total + row.prixvente * row.qtitecommande)*0.05 %}
+                            {%  set tva = (total + row.prixvente * row.qtitecommande)* 0.05 %}
                             {% set total = (total + row.prixvente * row.qtitecommande) %}
                             {%  set quantite = quantite + row.qtitecommande %}
                             {% endfor %}
                             <td>{{ quantite }}</td>
-                            <td>{{ total }} €</td>
-                            <td class="text-danger">{{ total + tva }} €</td>
+                            <td>{{ total|number_format(2, '.', ' ') }} €</td>
+                            <td class="text-danger">{{ (total + tva)|number_format(2, '.', ' ') }} €</td>
                         </tr>
                     {% endfor %}
                 </tbody>
