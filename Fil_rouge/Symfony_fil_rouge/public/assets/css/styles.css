@@ -140,8 +140,34 @@ color:rgb(46, 50, 65);
     width:4.5rem
 }
 
-@media screen and (max-width: 991px) /*demenssion mobile*/ {
-.logo {
-    display:none;
+@media screen and (max-width: 991px)  {
+    .logo {
+        display:none;
+    }
+    #navbar1.nav-item{
+        display: inline;
+    }
 }
+
+@media screen and (max-width: 1200px) {
+    .sousrubrique {
+        font-size: 1rem;
+    }
+
+}
+@media screen and (max-width: 1400px){
+    a {
+        font-size: 1.2rem;
+    }
+    .rechercheinput {
+        width: 150px!important;
+        margin-left: auto;
+        margin-right:0;
+    }
+    .paniernav{
+        margin-left: auto;
+    }
+    .accueil{
+        margin-left: auto;
+    }
 }
