@@ -32,6 +32,7 @@
                         <th>Quantité</th>
                         <th>HT</th>
                         <th>TTC</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -54,6 +55,13 @@
                             <td>{{ quantite }}</td>
                             <td>{{ total|number_format(2, '.', ' ') }} €</td>
                             <td class="text-danger">{{ (total + tva)|number_format(2, '.', ' ') }} €</td>
+                            <td>
+                                <p>
+                                    <a class="" href="{{ path('facturePdf',{commande:commande.id}) }}" download  title="Télécharger la facture">
+                                        <i class="fa fa-file-pdf-o fa-2x text-danger bg-light"></i>
+                                    </a>
+                                </p>
+                            </td>
                         </tr>
                     {% endfor %}
                 </tbody>

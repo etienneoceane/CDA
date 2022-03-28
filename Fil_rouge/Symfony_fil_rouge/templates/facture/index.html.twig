@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Tuto tableau</title>
+    <style>
+        body {
+            /*font-size: 20px;*/
+          
+            font-size: 1.4rem;
+            font-weight: 400;
+            line-height: 1.5;
+        }
+        .table-facture th,
+        .table-facture td {
+            border: 1px solid gray;
+            padding: 5px;
+        }
+        .table-facture {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        .table-facture th,
+        .table-facture td {
+            border: 1px solid gray;
+            padding: 5px;
+        }
+        .table-facture .lib-total {
+            text-align: right;
+            border-style: none;
+        }
+        td.lib-acti {
+            /*font-style: italic;*/
+            width: 200px;
+            text-align: center;
+        }
+        td.fld-num,
+        th.fld-num {
+            text-align: right;
+            width: 60px;
+        }
+        td.fld-log {
+            text-align: center;
+        }
+        .table-facture thead {
+            background-color: green;
+            color: white;
+        }
+        .table-facture tbody {
+            /*background-color: ivory;*/
+        }
+        table > caption {
+            font-size: 20px;
+            padding: 5px;
+        }
+        .container {
+            display: table;
+            width: 100%;
+            padding-left: 4px;
+            padding-right: 4px;
+        }
+        .container div {
+            display: table-cell;
+        }
+        .entreprise {
+            width: 60%;
+        }
+        .bgcaddie {
+            color: #011D7A !important;
+        }
+        .textLogo {
+            font-weight: bold;
+            font-size: 2.8rem;
+        }
+        .LinkLogo, .LinkLogo:hover, .LinkLogo:focus {
+            text-decoration: none;
+        }
+        .text-dark {
+            color: #343a40 !important;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="entreprise">
+        <a class="LinkLogo" href="/">
+            <span class="textLogo bgcaddie">Village</span><i class="fa fa-solid fa-guitar"></i>
+            <span class="textLogo text-dark">Green</span>
+        </a>
+
+        <p>10 rue de la guitare</p>
+        <p>80000 Amiens</p>
+    </div>
+    <div>
+        <p>
+            
+            </p>
+        <p> </p>
+        <p>
+            </p>
+        </p>
+        <p><strong>Téléphone: {{ commande.client.tel }}</strong></p>
+        <p><strong>Email: {{ commande.client.user.email }}</strong></p>
+        {# <p><strong>Date: {{ commande.date }}</strong></p> #}
+
+    </div>
+</div>
+
+
+<table class="table-facture">
+    <caption>Facture n°{{commande.id}}</caption>
+    <thead>
+    <tr>
+        <th>Produit</th>
+        <th>Quantité</th>
+        <th>Prix unitaire</th>
+    </tr>
+    </thead>
+    <tbody>
+
+        <tr>
+
+            <td class="fld-log"></td>
+            <td class="fld-num"></td>
+            <td class="lib-acti">€</td>
+        </tr>
+        
+
+    </tbody>
+
+    <tfoot>
+    <tr>
+        <th colspan="2">Sous Total HT</th>
+        <td class="lib-acti">€</td>
+    </tr>
+    <tr>
+        <th colspan="2">Tva</th>
+        
+        <td class="lib-acti">€</td>
+    </tr>
+
+    <tr>
+        <th colspan="2">Total TTC</th>
+        <td class="lib-acti">€</td>
+    </tr>
+    </tfoot>
+</table>
+</body>
+</html>
+
+

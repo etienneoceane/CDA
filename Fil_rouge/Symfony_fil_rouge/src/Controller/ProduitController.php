@@ -80,11 +80,23 @@ class ProduitController extends AbstractController
         $form = $this->createForm(ProduitType::class, $id);
         $form->handleRequest($request);
         $rubriques = $rub->findAll();
-        if ($form->isSubmitted() && $form->isValid()) {
-            
-            $entityManager->flush();
-            // LE CHANGEMENT DE LA PHOTO NE SE FAIT PAS A REGLER AU PLUS VITE
-            return $this->redirectToRoute('produit_index', [], Response::HTTP_SEE_OTHER);
+        if ($form->isSubmitted() && $form->isValid()) 
+        {
+                $aMimeTypes = array("image/gif", "image/jpeg", "image/jpg", "image/png", "image/x-png", "image/tiff");
+                //   $img = ['products']['photo'];
+                $objfichier = $request->files->get('produit');
+
+                $fichier = $objfichier['photo'];
+                if (!empty($fichier)&& in_array($fichier->getClientmimeType(), $aMimeTypes)) 
+                {
+                    if ($fichier->move('assets/src/', $fichier->getClientOriginalName())) 
+                    {
+                        $id->setPhoto($fichier->getClientOriginalName());
+                    }
+                }
+                $entityManager->flush();
+
+                return $this->redirectToRoute('produit_index', [], Response::HTTP_SEE_OTHER);
         }
         return $this->renderForm('produit/edit.html.twig', [
             'produit' => $id,
