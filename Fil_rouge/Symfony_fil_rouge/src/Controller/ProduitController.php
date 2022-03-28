@@ -81,8 +81,9 @@ class ProduitController extends AbstractController
         $form->handleRequest($request);
         $rubriques = $rub->findAll();
         if ($form->isSubmitted() && $form->isValid()) {
+            
             $entityManager->flush();
-
+            // LE CHANGEMENT DE LA PHOTO NE SE FAIT PAS A REGLER AU PLUS VITE
             return $this->redirectToRoute('produit_index', [], Response::HTTP_SEE_OTHER);
         }
         return $this->renderForm('produit/edit.html.twig', [
