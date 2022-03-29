@@ -16,11 +16,13 @@ class FactureController extends AbstractController
      * @Route("/facture/pdf/{commande}", name="facturePdf")
      */
 
-    public function facturePdf(Pdf $knpSnappyPdf, Commande $commande, ClientRepository $client)
+    public function facturePdf(Pdf $knpSnappyPdf, Commande $commande, ClientRepository $cli)
     {
-        // if ($commande->getClient() !== $client->findOneBy(['users' => $this->getUser()]) and $this->getUser()->getRoles() == "ROLE_USER") {
+        // if ($commande->getClient() !== $cli->findOneBy(['users' => $this->getUser()]) and $this->getUser()->getRoles() == "ROLE_USER") {
         //     return $this->redirectToRoute('accueil');
         // }
+        $user=
+        $client=$cli->findByUser($);
         $html = $this->renderView('facture/index.html.twig', array(
             'commande' => $commande
         ));

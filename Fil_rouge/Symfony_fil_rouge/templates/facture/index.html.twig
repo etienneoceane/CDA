@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <title>Tuto tableau</title>
+    <title>Facture</title>
     <style>
         body {
             /*font-size: 20px;*/
@@ -104,8 +104,8 @@
             </p>
         </p>
         <p><strong>Téléphone: {{ commande.client.tel }}</strong></p>
-        <p><strong>Email: {{ commande.client.user.email }}</strong></p>
-        {# <p><strong>Date: {{ commande.date }}</strong></p> #}
+        {# <p><strong>Email: {{ commande.client.user.email }}</strong></p> #}
+        <p><strong>Date: {{ commande.date|date('Y-m-d')}}</strong></p>
 
     </div>
 </div>
