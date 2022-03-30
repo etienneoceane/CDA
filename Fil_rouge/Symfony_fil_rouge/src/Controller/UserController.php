@@ -66,6 +66,7 @@ class UserController extends AbstractController
             $ville = $request->get('ville');
             $cp = $request->get('cp');
             $telephone = $request->get('tel');
+            $genre=$request->get('genre');
             
 
             $profil->setNom($nom);
@@ -75,7 +76,8 @@ class UserController extends AbstractController
             $profil->setVille($ville);
             $profil->setCp($cp);
             $profil->setTel($telephone);
-
+            $profil->setGenre($genre);
+            
             $manager->persist($profil);
             $manager->flush();
         

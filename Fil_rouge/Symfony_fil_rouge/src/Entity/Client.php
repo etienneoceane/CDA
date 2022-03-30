@@ -73,6 +73,11 @@ class Client
      */
     private $users;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $Genre;
+
     
     public function __construct()
     {
@@ -257,6 +262,18 @@ class Client
                 $user->setClient(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getGenre(): ?string
+    {
+        return $this->Genre;
+    }
+
+    public function setGenre(string $Genre): self
+    {
+        $this->Genre = $Genre;
 
         return $this;
     }

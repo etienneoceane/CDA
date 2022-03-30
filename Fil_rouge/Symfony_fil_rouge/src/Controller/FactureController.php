@@ -21,8 +21,6 @@ class FactureController extends AbstractController
         // if ($commande->getClient() !== $cli->findOneBy(['users' => $this->getUser()]) and $this->getUser()->getRoles() == "ROLE_USER") {
         //     return $this->redirectToRoute('accueil');
         // }
-        $user=
-        $client=$cli->findByUser($);
         $html = $this->renderView('facture/index.html.twig', array(
             'commande' => $commande
         ));
