@@ -119,15 +119,17 @@
     </tr>
     </thead>
     <tbody>
-
+        {% set total = 0 %}
+        {% set quantite = 0 %}
+        {% for row in commande.contenirs %}
         <tr>
 
-            <td class="fld-log"></td>
-            <td class="fld-num"></td>
-            <td class="lib-acti">€</td>
+            <td class="fld-log">{{row.produits.nom}}</td>
+            <td class="fld-num">{{row.qtitecommande}}</td>
+            <td class="lib-acti">{{row.prixvente}}€</td>
         </tr>
-        
-
+        {% set total = total + row.prixvente * row.qtitecommande %}
+        {% endfor %}
     </tbody>
 
     <tfoot>
