@@ -67,7 +67,7 @@
             display: table-cell;
         }
         .entreprise {
-            width: 60%;
+            width: 30%;
         }
         .bgcaddie {
             color: #011D7A !important;
@@ -82,29 +82,35 @@
         .text-dark {
             color: #343a40 !important;
         }
+        .infos_clients{
+            text-align: end;
+            font-size: 1.5rem;
+        }
+        .textEntreprise{
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
     </style>
 </head>
 <body>
 <div class="container">
-    <div class="entreprise">
-        <a class="LinkLogo" href="/">
-            <span class="textLogo bgcaddie">Village</span><i class="fa fa-solid fa-guitar"></i>
-            <span class="textLogo text-dark">Green</span>
-        </a>
-
-        <p>10 rue de la guitare <br>80000 Amiens</p>
-    </div>
-    <div>
-        <p>{{ commande.client.genre|capitalize }}
-            {{ commande.client.nom|capitalize }}
-            {{ commande.client.prenom|capitalize }} </p>
-        <p> </p>
-        <p>
+    <div class="row">
+        <div class="col-8 entreprise">
+                <span class="textLogo bgcaddie">Village</span><span class="textLogo text-dark">Green</span>
+                <span class="textEntreprise">10 rue de la guitare <br>80000 Amiens</span>
+            
+        </div>
+        <div class="col-4 infos_clients">
+            <p>
+                <span class="textEntreprise">{{ commande.client.genre|capitalize }}
+                    {{ commande.client.nom|capitalize }}
+                    {{ commande.client.prenom|capitalize }}
+                </span><br>
+                <span>Tél: {{ commande.client.tel }}</span><br>
+                <span>Date: {{ commande.date|date('Y-m-d')}}</span>
             </p>
-        </p>
-        <p><strong>Tél: {{ commande.client.tel }}</strong></p>
-        <p><strong>Date: {{ commande.date|date('Y-m-d')}}</strong></p>
-
+        </div>
     </div>
 </div>
 
