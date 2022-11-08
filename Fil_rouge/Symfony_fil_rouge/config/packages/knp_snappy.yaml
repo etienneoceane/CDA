@@ -1,9 +1,9 @@
 knp_snappy:
     pdf:
         enabled:    true
-        binary:     "\"C:\\Users\\Océane\\AppData\\Local\\Temp\\wkhtmltopdf\\bin\\wkhtmltopdf.exe\""
+        binary:     "\"O:\\wamp64\\www\\CDA\\Fil_rouge\\Symfony_fil_rouge\\ressources\\wkhtmltopdf\\bin\\wkhtmltopdf.exe\""
         options:    []
     image:
         enabled:    true
-        binary:     "\"C:\\Users\\Océane\\AppData\\Local\\Temp\\wkhtmltopdf\\bin\\wkhtmltopdf.exe\"" 
+        binary:     "\"O:\\wamp64\\www\\CDA\\Fil_rouge\\Symfony_fil_rouge\\ressources\\wkhtmltopdf\\bin\\wkhtmltoimage.exe\"" 
         options:    []

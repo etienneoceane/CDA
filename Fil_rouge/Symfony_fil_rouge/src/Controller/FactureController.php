@@ -2,13 +2,14 @@
 
 namespace App\Controller;
 
-use App\Entity\Commande;
 use Knp\Snappy\Pdf;
-use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
+use App\Entity\Commande;
+use Psr\Log\LoggerInterface;
 use App\Repository\ClientRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Knp\Bundle\SnappyBundle\Snappy\Response\PdfResponse;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class FactureController extends AbstractController
 {
@@ -16,7 +17,7 @@ class FactureController extends AbstractController
      * @Route("/facture/pdf/{commande}", name="facturePdf")
      */
 
-    public function facturePdf(Pdf $knpSnappyPdf, Commande $commande, ClientRepository $cli)
+    public function facturePdf(Pdf $knpSnappyPdf, Commande $commande, ClientRepository $cli, LoggerInterface $logger)
     {
         // if ($commande->getClient() !== $cli->findOneBy(['users' => $this->getUser()]) and $this->getUser()->getRoles() == "ROLE_USER") {
         //     return $this->redirectToRoute('accueil');
@@ -25,10 +26,12 @@ class FactureController extends AbstractController
             'commande' => $commande
         ));
         // header("Content-type:application/pdf");
+        // $this->logger->info("Before return");
         return new PdfResponse(
             $knpSnappyPdf->getOutputFromHtml($html),
             'facture-numero-' . $commande->getId() . '.pdf'
         );
+
     }
 
     /**

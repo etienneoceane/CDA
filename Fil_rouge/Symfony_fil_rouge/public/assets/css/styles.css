@@ -27,6 +27,21 @@ h2{
     background-color:rgb(255, 255, 255);
 }
 
+.logo {
+    z-index: 1;
+    position: absolute;
+    float: left;
+    min-width: 16%;
+    max-height:165px;
+    margin: 0%;
+}
+
+.divLogo{
+    position: absolute;
+    z-index: 1;
+    margin-left: -12px;
+}
+
 #navbar1{
     font-size:2em;
     background-color: rgb(38, 105, 66);
@@ -58,21 +73,6 @@ h2{
 #navbar2 .navbar-nav > li > a:hover,
 #navbar2 .navbar-nav > li > a:focus {
     color: white;
-}
-
-.logo {
-    z-index: 1;
-    position: absolute;
-    float: left;
-    max-width: 289px;
-    min-width: 18%;
-    margin: 0%;
-}
-
-.divLogo{
-    position: absolute;
-    z-index: 1;
-    margin-left: -12px;
 }
 
 .breadcrumb {

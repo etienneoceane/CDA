@@ -19,9 +19,8 @@ class AdminAccueilController extends AbstractController
      */
     public function accueil(CommandeRepository $com): Response
     {
-
         return $this->render('admin_accueil/accueil.html.twig', [
-            'commandes' => $com->findAll(),
+            'commandes' => $com->findBy([],['id' => 'desc']), // ['id' => 'desc'] Permet d'afficher les commandes de la plus récent à la plus ancienne
         ]);
     }
 

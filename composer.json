@@ -1,0 +1,5 @@
+{
+    "require": {
+        "symfony/profiler-pack": "^1.0"
+    }
+}

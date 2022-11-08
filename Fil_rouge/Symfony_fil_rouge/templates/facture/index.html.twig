@@ -90,7 +90,10 @@
             font-size: 1.8rem;
             font-weight: bold;
         }
-
+        .total{
+            color: red;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -119,9 +122,10 @@
     <caption>Facture n°{{commande.id}}</caption>
     <thead>
     <tr>
-        <th>Produit</th>
-        <th>Quantité</th>
-        <th>Prix unitaire</th>
+        <th>PRODUIT</th>
+        <th>QTÉ</th>
+        <th>PRIX UNIT.HT</th>
+        <th>MONTANT HT</th>
     </tr>
     </thead>
     <tbody>
@@ -132,7 +136,8 @@
 
             <td class="fld-log">{{row.produits.nom}}</td>
             <td class="fld-num">{{row.qtitecommande}}</td>
-            <td class="lib-acti">{{row.prixvente}}€</td>
+            <td class="lib-acti">{{row.prixvente|number_format(2, '.', ' ')}}€</td>
+            <td class="lib-acti">{{(row.prixvente * row.qtitecommande)|number_format(2, '.', ' ')}}€</td>
         </tr>
         {% set total = total + row.prixvente * row.qtitecommande %}
         {% endfor %}
@@ -140,18 +145,18 @@
 
     <tfoot>
     <tr>
-        <th colspan="2">Sous Total HT</th>
-        <td class="lib-acti">€</td>
+        <th colspan="3">HT</th>
+        <td class="lib-acti">{{total|number_format(2, '.', ' ')}}€</td>
     </tr>
     <tr>
-        <th colspan="2">Tva</th>
-        
-        <td class="lib-acti">€</td>
+        <th colspan="3">Tva 5%</th>
+         {% set tva = total *0.05 %}
+        <td class="lib-acti">{{tva|number_format(2, '.', ' ')}}€</td>
     </tr>
 
     <tr>
-        <th colspan="2">Total TTC</th>
-        <td class="lib-acti">€</td>
+        <th colspan="3" class="total">Total TTC</th>
+        <td class="lib-acti total">{{(total + tva)|number_format(2, '.', ' ')}}€</td>
     </tr>
     </tfoot>
 </table>

@@ -73,6 +73,7 @@ class AccueilController extends AbstractController
             'home' => $rubriques,
             'listesousrubriques'=>$listesousrubriques,
             'produit' => $produit,
+
         ]);
     }    
 

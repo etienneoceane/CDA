@@ -40,7 +40,7 @@
                         <tr>
                             <td>{{ commande.id }}</td>
                             <td>{{ commande.date|date('d-m-Y') }}</td>
-                            <td>{{ (commande.client.nom) }}</td>
+                            <td>{{ ((commande.client.nom)|upper ) }}</td>
                             <td>{{ commande.adresselivraison}}</td>
                             <td>{{ commande.villelivraison }}</td>
                             <td>{{ commande.cplivraison }}</td>
@@ -54,10 +54,10 @@
                             {% endfor %}
                             <td>{{ quantite }}</td>
                             <td>{{ total|number_format(2, '.', ' ') }} €</td>
-                            <td class="text-danger">{{ (total + tva)|number_format(2, '.', ' ') }} €</td>
+                            <td class="text-danger"><b>{{ (total + tva)|number_format(2, '.', ' ') }} €</b></td>
                             <td>
                                 <p>
-                                    <a class="" href="{{ path('facturePdf',{commande:commande.id}) }}" download  title="Télécharger la facture">
+                                    <a class="" href="{{ path('facturePdf',{commande:commande.id}) }}" download title="Télécharger la facture">
                                         <i class="fa fa-file-pdf-o fa-2x text-danger bg-light"></i>
                                     </a>
                                 </p>
