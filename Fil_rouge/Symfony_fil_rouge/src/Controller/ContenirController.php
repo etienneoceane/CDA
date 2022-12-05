@@ -181,16 +181,35 @@ class ContenirController extends AbstractController
     /**
      * @Route("/informations/client", name="informations_client")
      */
-    public function infos_client(ClientRepository $client, UserRepository $user, RubriqueRepository $rub): Response
+    public function infos_client(ClientRepository $client, UserRepository $user, RubriqueRepository $rub, SessionInterface $session, ProduitRepository $prod): Response
     {
         $rubriques = $rub->findAll();
         $iduser=$user->find($this->getUser())->getClient()->getId();
         $profil=$client->findByUser($iduser);
 
+        $produit = $prod->findAll();
+        $panier=$session->get('panier',[]);
+        $panierAvecDonnees= [];
+        foreach ($panier as $id  => $qte)
+        {
+            $panierAvecDonnees[]=[
+                'produit'=> $prod->find($id), 
+                'quantite'=> $qte
+            ];
+        }
+        $total=0;
+        foreach($panierAvecDonnees as $item){
+            $totalItem =$item['produit']->getPrixht() * $item['quantite'];
+            $total+= $totalItem;
+        }
 
         return $this->render('profil/recap_profil.html.twig', [
             'profil' => $profil,
             'home' => $rubriques,
+            'items'=>$panierAvecDonnees,
+            'total'=>$total,
+            'produit'=>$produit,
+            'panier'=>$panier
         ]);
     }
 

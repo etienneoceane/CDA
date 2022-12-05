@@ -1,46 +1,206 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} app.user.client {% endblock %}
+{% block title %}
+	app.user.client
+{% endblock %}
 
 {% block body %}
 
-<section>
-	<div class="container bg-center">
-		<h1 id="titre" class=" pt-3 pl-5">Votre profil</h1>
-		<div class="row mr-5 ml-5 ">
-			<div class="col-6" id="infos-client">
-				<p class="adresse">Adresse de facturation</p>
-				<input class="form-control" type="text" placeholder="{{ app.user.client.genre|capitalize }}" aria-label="Disabled input example" disabled>
-				<input class="form-control" type="text" placeholder="{{ app.user.client.nom|capitalize }}" aria-label="Disabled input example" disabled>
-				<input class="form-control" type="text" placeholder="{{ app.user.client.prenom|capitalize }}" aria-label="Disabled input example" disabled>
-				<input class="form-control" type="text" placeholder="{{ app.user.client.adresse|capitalize }}" aria-label="Disabled input example" disabled>
-				<input class="form-control" type="text" placeholder="{{ app.user.client.ville|capitalize }}" aria-label="Disabled input example" disabled>
-				<input class="form-control" type="text" placeholder="{{ app.user.client.cp|capitalize }}" aria-label="Disabled input example" disabled>
-				<input class="form-control" type="text" placeholder="{{ app.user.client.tel }}" aria-label="Disabled input example" disabled>
-			</div>
-			<div class="col-6" id="infos-client">
-				<p class="adresse">Adresse de livraison</p>
-				<input class="form-control" type="text" placeholder="{{ app.user.client.genre|capitalize }}" aria-label="Disabled input example" disabled>
-				<input class="form-control" type="text" placeholder="{{ app.user.client.nom|capitalize }}" aria-label="Disabled input example" disabled>
-				<input class="form-control" type="text" placeholder="{{ app.user.client.prenom|capitalize }}" aria-label="Disabled input example" disabled>
-				<input class="form-control" type="text" placeholder="{{ app.user.client.adresse|capitalize }}" aria-label="Disabled input example" disabled>
-				<input class="form-control" type="text" placeholder="{{ app.user.client.ville|capitalize }}" aria-label="Disabled input example" disabled>
-				<input class="form-control" type="text" placeholder="{{ app.user.client.cp|capitalize }}" aria-label="Disabled input example" disabled>
-				<input class="form-control" type="text" placeholder="{{ app.user.client.tel }}" aria-label="Disabled input example" disabled>
-			</div>
+	<section>
+		<div class="container bg-center">
+			<nav aria-label="breadcrumb">
+				<ol class="breadcrumb ml-5">
+					<li class="breadcrumb-item">
+						<a href="{{ path('accueil') }}">Accueil</a>
+					</li>
+					<li class="breadcrumb-item">
+						<a href="{{ path('panier') }}">Panier</a>
+					</li>
+					<li class="breadcrumb-item active" aria-current="page">Paiement</li>
+				</ol>
+			</nav>
+			<div class="row mr-5 ml-5 ">
+				<div class="col-12" id="general">
+					<div class="row" id="separation_en_deux">
+						<div class="col-5" id="div gauche">
+							<div class="row" id="les_deux_col_3">
+								<div class="col-6" id="infos-client">
+									<p class="adresse">
+										<b>Adresse de facturation</b>
+									</p>
+									{{ app.user.client.genre|capitalize }}
+									{{ app.user.client.nom|capitalize }}
+									{{ app.user.client.prenom|capitalize }}<br>
+									{{ app.user.client.adresse|capitalize }}<br>
+									{{ app.user.client.cp|capitalize }}
+									{{ app.user.client.ville|capitalize }}<br>
+								</div>
+								<div class="col-6" id="infos-client">
+									<p class="adresse">
+										<b>Adresse de livraison</b>
+									</p>
+									{{ app.user.client.genre|capitalize }}
+									{{ app.user.client.nom|capitalize }}
+									{{ app.user.client.prenom|capitalize }}<br>
+									{{ app.user.client.adresse|capitalize }}<br>
+									{{ app.user.client.cp|capitalize }}
+									{{ app.user.client.ville|capitalize }}<br>
+									<br>
+								</div>
+							</div>
+							{# FIN ROW les_deux_col_3 #}
+							<div class="col-12 mb-4 pl-0">
+								<div class="card">
+									<div class="accordion" id="accordionExample">
+										<div class="card">
+											<div class="card-header p-0" id="headingTwo">
+												<h2 class="mb-0">
+													<button class="btn btn-light btn-block text-left collapsed p-3 rounded-0 border-bottom-custom" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+														<div class="d-flex align-items-center justify-content-between">
+															<span>Paypal</span>
+															<img src="/assets/src/7kQEsHU.png" width="30">
+														</div>
+													</button>
+												</h2>
+											</div>
+											<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+												<div class="card-body">
+													<input type="text" class="form-control" placeholder="Paypal email">
+												</div>
+											</div>
+										</div>
+										<div class="card">
+											<div class="card-header p-0">
+												<h2 class="mb-0">
+													<button class="btn btn-light btn-block text-left p-3 rounded-0" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+														<div class="d-flex align-items-center justify-content-between">
+															<span>Credit card</span>
+															<div class="icons">
+																<img src="/assets/src/2ISgYja.png" width="30">
+																<img src="/assets/src/W1vtnOV.png" width="30">
+																<img src="/assets/src/35tC99g.png" width="30">
+																<img src="/assets/src/2ISgYja.png" width="30">
+															</div>
+														</div>
+													</button>
+												</h2>
+											</div>
+											<div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+												<div class="card-body payment-card-body">
+													<span class="font-weight-normal card-text">Card Number</span>
+													<div class="input">
+														<i class="fa fa-credit-card"></i>
+														<input type="text" class="form-control" placeholder="0000 0000 0000 0000">
+													</div>
+													<div class="row mt-3 mb-3">
+														<div class="col-md-6">
+															<span class="font-weight-normal card-text">Expiry Date</span>
+															<div class="input">
+																<i class="fa fa-calendar"></i>
+																<input type="text" class="form-control" placeholder="MM/YY">
+															</div>
+														</div>
+														<div class="col-md-6">
+															<span class="font-weight-normal card-text">CVC/CVV</span>
+															<div class="input">
+																<i class="fa fa-lock"></i>
+																<input type="text" class="form-control" placeholder="000">
+															</div>
+														</div>
+													</div>
+													<span class="text-muted certificate-text">
+														<i class="fa fa-lock"></i>
+														Your transaction is secured with ssl certificate</span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							{# FIN COL-6 PAIEMENT #}
+						</div>
+						{# FIN COL div gauche#}
+						{% if items | length > 0  %}
+							<div class="col-7">
+								<table class="table">
+									<thead>
+										<tr>
+											<th>Photo</th>
+											<th>Produit</th>
+											<th>Quantité</th>
+											<th>Prix/U</th>
+											<th>Total</th>
+											<th></th>
+											<th></th>
+										</tr>
+									</thead>
+									<tbody>
+										{% for item in items %}
+											<tr>
+												<td>
+													<a href="{{path('details',{id:item.produit.id})}}"><img class="photoproduit" src="/assets/src/{{item.produit.photo}}"></a>
+												</td>
+												<td>
+													<a href="{{path('details',{id:item.produit.id})}}">{{item.produit.nom}}</a>
+												</td>
+												<td>{{item.quantite}}
+												</td>
+												<td id="Prix/U">{{(item.produit.prixht)|number_format(2, '.', ' ')}} €</td>
+												<td id="Total">{{(item.produit.prixht * item.quantite)|number_format(2, '.', ' ')}} €</td>
+												<td>
+													<a href="{{ path('panier_delete',{'id':item.produit.id}) }}" type="submit" class="btn btn-danger btn-sm">
+														<i class="fas fa-trash"></i>
+													</a>
+												</td>
+											</tr>
+										{% endfor %}
+									</tbody>
+									<tfoot>
+										<tr>
+											<td colspan="5" class="text-right">
+												Sous-total :
+												{{total|number_format(2, '.', ' ')}}
+												€
+											</td>
+										</tr>
+										<tr>
+											<td colspan="5" class="text-right">
+												TVA :
+												{{(total * 0.05)|number_format(2, '.', ' ')}}
+												€
+											</td>
+										</tr>
+										<tr>
+											<td colspan="5" class="text-right">
+												Total TTC :
+												{{(total + total * 0.05)|number_format(2, '.', ' ')}}
+												€
+											</td>
+										</tr>
+									</tfoot>
+								</table>
+								<div colspan="5" class="text-right">
+								<button type="submit" class="btn btn-secondary mb-2">
+									<a class="valider font-weight-bold text-light" href="{{ path('profil_client') }}">Modifier mes informations
+									</a>
+								</button>
+									<button type="submit" class="btn btn-success">
+										<a type="submit" class="valider font-weight-bold text-light" href="{{ path('panier_valider') }}">Valider mes informations et procéder au paiement</a>
+									</button>
+								</div>
+							</div>
+							{# FIN COL-6 facture #}
+						{% endif %}
+					</div> {# FIN row separation_en_deux#}
+				</div>{# FIN GRAND COL general #}
+			</div>{# FIN GRAND row #}
 		</div>
-		<div class="row justify-content-between">
-			<div class="col-12 mt-5 mb-2">
-				<button type="submit" class="btn btn-warning">
-					<a class="valider font-weight-bold text-light" href="{{ path('profil_client') }}">Modifier mes informations</a>
-				</button>
-				<button type="submit" class="btn btn-success">
-					<a class="valider font-weight-bold text-light" href="{{ path('panier_valider') }}">Valider mes informations et passer ma commande</a>
-				</button>
-			</div>
-		</div>
-    </div>
-</section>
-
-
+	</section>
 {% endblock %}
+
+{% block javascripts %}
+<script>
+	
+</script>
+{% endblock %}
+

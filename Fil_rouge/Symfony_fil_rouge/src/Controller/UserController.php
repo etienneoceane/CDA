@@ -3,13 +3,15 @@
 namespace App\Controller;
 
 use App\Entity\Client;
-use App\Repository\ClientRepository;
-use App\Repository\RubriqueRepository;
 use App\Repository\UserRepository;
+use App\Repository\ClientRepository;
+use App\Repository\ProduitRepository;
+use App\Repository\RubriqueRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
@@ -50,11 +52,26 @@ class UserController extends AbstractController
     /**
      * @Route("/profil/post", name="post_client")
      */
-    public function AjoutClient(ClientRepository $client, RubriqueRepository $rub, UserRepository $user, EntityManagerInterface $manager, Request $request)
+    public function AjoutClient(ClientRepository $client, RubriqueRepository $rub, UserRepository $user, EntityManagerInterface $manager, Request $request, SessionInterface $session, ProduitRepository $prod)
     {  
         $rubriques = $rub->findAll();
         $iduser=$user->find($this->getUser())->getClient()->getId();
         $profil=$client->findByUser($iduser);
+        $produit = $prod->findAll();
+        $panier=$session->get('panier',[]);
+        $panierAvecDonnees= [];
+        foreach ($panier as $id  => $qte)
+        {
+            $panierAvecDonnees[]=[
+                'produit'=> $prod->find($id), 
+                'quantite'=> $qte
+            ];
+        }
+        $total=0;
+        foreach($panierAvecDonnees as $item){
+            $totalItem =$item['produit']->getPrixht() * $item['quantite'];
+            $total+= $totalItem;
+        }
         
         
             // $profil = $client->findOneBy($user => $this->getUser());
@@ -84,6 +101,10 @@ class UserController extends AbstractController
         }
         return $this->render('profil/recap_profil.html.twig', [
             'home' => $rubriques,
+            'items'=>$panierAvecDonnees,
+            'total'=>$total,
+            'produit'=>$produit,
+            'panier'=>$panier
         ]);
     }
 }

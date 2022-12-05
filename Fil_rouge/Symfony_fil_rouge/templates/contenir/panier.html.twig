@@ -1,86 +1,90 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-{# CSS #}
-<style>
+	{# CSS #}
+	<style>
 
-input{
-    width:25%;
-}
-</style>
+		input {
+			width: 25%;
+		}
+	</style>
 
-<section>
-	<div class="container bg-center">
-        <div class="bg-light p-3">
-            <h1>Votre panier</h1>
-        </div>
-        {% if items | length > 0  %}
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Photo</th>
-                        <th>Produit</th>
-                        <th>Quantité</th>
-                        <th>Prix</th>
-                        <th>Total</th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                {% for item in items %}
-                        <tr>
-                            <td><a href="{{path('details',{id:item.produit.id})}}"><img class="photoproduit" src="/assets/src/{{item.produit.photo}}"></a></td>
-                            <td><a href="{{path('details',{id:item.produit.id})}}">{{item.produit.nom}}</a></td>
-                            <td>
-                                <form action="{{ path('panier_update',{'id':item.produit.id}) }}" method="post">
-                                    {# <label for="quantite">Qté</label> #}
-                                    <input type="number" id="qte" name="qte" min="0" max="1000" onchange="this.form.submit()"  value="{{item.quantite}}">
-                                </form>
-                            </td>
-                            <td>{{(item.produit.prixht)|number_format(2, '.', ' ')}}€</td>
-                            <td>{{(item.produit.prixht * item.quantite)|number_format(2, '.', ' ')}} €</td>
-                            <td>
-                                
-                            </td>
-                            <td>
-                                <a href="{{ path('panier_delete',{'id':item.produit.id}) }}" type="submit" class="btn btn-danger btn-sm">
-                                    <i class="fas fa-trash"></i>
-                                </a>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="4"class="text-right">HT: </td>
-                        <td>{{total|number_format(2, '.', ' ')}} €</td>
-                    </tr>
-                    <tr>
-                        <td colspan="4"class="text-right">TVA: </td>
-                        <td>{{(total * 0.05)|number_format(2, '.', ' ')}}€</td>
-                    </tr>
-                    <tr>
-                        <td colspan="4" class="text-right total">Total TTC: </td>
-                        <td class="total">{{(total + total * 0.05)|number_format(2, '.', ' ')}} €</td>
-                        <td></td>
-                    </tr>
-                    <tr >
-                        <td colspan="5" class="text-right">
-                            <a href="{{'/accueil'}}" class="col-2 btn btn-secondary btn-block">
-                            Retour
-                            </a>
-                            <a type="submit" href="{{ path('informations_client') }}" class="col-2 mt-0 btn btn-success btn-block">
-                            Valider le panier
-                            </a>                                                                                
-                        </td>
-                    </tr>
-                </tfoot>
-            </table>
-        {% else %}
-            <p>Surprise, c'est vide !</p>
-        {% endif %}
-	</div>
-</section>
+	<section>
+		<div class="container bg-center">
+			<nav aria-label="breadcrumb">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item">
+						<a href="{{ path('accueil') }}">Accueil</a>
+					</li>
+					<li class="breadcrumb-item active" aria-current="page">Panier</li>
+				</ol>
+			</nav>
+			<div class="bg-light p-3">
+				<h1>Votre panier</h1>
+			</div>
+			{% if items | length > 0  %}
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Photo</th>
+							<th>Produit</th>
+							<th>Quantité</th>
+							<th>Prix/U</th>
+							<th>Prix total</th>
+							<th></th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for item in items %}
+							<tr>
+								<td>
+									<a href="{{path('details',{id:item.produit.id})}}"><img class="photoproduit" src="/assets/src/{{item.produit.photo}}"></a>
+								</td>
+								<td>
+									<a href="{{path('details',{id:item.produit.id})}}">{{item.produit.nom}}</a>
+								</td>
+								<td>
+									<form
+										action="{{ path('panier_update',{'id':item.produit.id}) }}" method="post">
+										{# <label for="quantite">Qté</label> #}
+										<input type="number" id="qte" name="qte" min="0" max="1000" onchange="this.form.submit()" value="{{item.quantite}}">
+									</form>
+								</td>
+								<td>{{(item.produit.prixht)|number_format(2, '.', ' ')}}€</td>
+								<td>{{(item.produit.prixht * item.quantite)|number_format(2, '.', ' ')}}
+									€</td>
+								<td></td>
+								<td>
+									<a href="{{ path('panier_delete',{'id':item.produit.id}) }}" type="submit" class="btn btn-danger btn-sm">
+										<i class="fas fa-trash"></i>
+									</a>
+								</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="4" class="text-right">Sous-total :
+							</td>
+							<td>{{total|number_format(2, '.', ' ')}}
+								€</td>
+						</tr>
+						<tr>
+							<td colspan="5" class="text-right">
+								<a href="{{'/accueil'}}" class="col-2 btn btn-secondary btn-block">
+									Retour
+								</a>
+								<a type="submit" href="{{ path('informations_client') }}" class="col-2 mt-0 btn btn-success btn-block">
+									Passez la commande
+								</a>
+							</td>
+						</tr>
+					</tfoot>
+				</table>
+			{% endif %}
+		</div>
+	</section>
 
 {% endblock %}
+
